@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #234E70;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px 15px;
+}
+
+h1 {
+    font-size: 25px;
+    margin: 15px auto 20px;
+    max-width: 600px;
+}
+
+h2 {
+    font-size: 20px;
+    margin: 15px auto;
+    max-width: 600px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 15px auto;
+}
+
+button {
+    background-color: #1565C0;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 15px 18px;
+    font-size: 16px;
+    margin: 6px;
+    cursor: pointer;
+    min-height: 50px;
+}
+
+input,
+textarea {
+    width: 100%;
+    max-width: 500px;
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+textarea {
+    min-height: 120px;
+    resize: none;
+}
+
+.emocoes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.emocoes button {
+    width: 100%;
+    margin: 0;
+    min-height: 60px;
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 400px) {
+
+    body {
+        padding: 15px 10px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    .emocoes {
+        gap: 8px;
+    }
+
+    .emocoes button {
+        font-size: 15px;
+        padding: 12px 8px;
+    }
+}
