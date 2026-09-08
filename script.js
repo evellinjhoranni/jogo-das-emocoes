@@ -1,302 +1,601 @@
-let nomeJogador = "";
-let animalEscolhido = "";
 let respostas = [];
+
+let respostasPerguntas = {
+    pergunta1: "",
+    detalhe1: "",
+    pergunta2: "",
+    detalhe2: "",
+    pergunta3: "",
+    detalhe3: "",
+    pergunta4: "",
+    detalhe4: "",
+    pergunta5: "",
+    detalhe5: "",
+    pergunta6: "",
+    detalhe6: ""
+};
+
+const URL_PLANILHA = "https://script.google.com/macros/s/AKfycbzIB2B0QBHPiVmK3ByK55UmWOyGw0oTRiIIY2LBQCyAA_xUOTXerbIUjXKaV_k3Zksl/exec";
+
+
+/* FUNDOS COM EMOÇÕES - POSICIONADOS PARA CELULAR */
+
+const fundos = {
+
+    inicio: `
+        <div class="fundo-emocoes">
+
+            <span class="media inclinada-direita"
+            style="top: 4%; left: 8%;">CURIOSIDADE</span>
+
+            <span class="pequena"
+            style="top: 12%; right: 8%;">CALMA</span>
+
+            <span class="pequena inclinada-esquerda"
+            style="top: 24%; left: 6%;">ALEGRIA</span>
+
+            <span class="media inclinada-direita"
+            style="top: 30%; right: 6%;">ESPERANÇA</span>
+
+            <span class="grande inclinada-esquerda"
+            style="top: 43%; left: 12%;">CONFIANÇA</span>
+
+            <span class="pequena"
+            style="top: 52%; right: 10%;">ORGULHO</span>
+
+            <span class="media vertical"
+            style="bottom: 22%; left: 7%;">ALÍVIO</span>
+
+            <span class="pequena inclinada-direita"
+            style="bottom: 14%; right: 8%;">ANSIEDADE</span>
+
+        </div>
+    `,
+
+
+    pergunta1: `
+        <div class="fundo-emocoes">
+
+            <span class="media inclinada-direita"
+            style="top: 4%; left: 6%;">ALEGRIA</span>
+
+            <span class="pequena"
+            style="top: 11%; right: 8%;">MEDO</span>
+
+            <span class="pequena inclinada-esquerda"
+            style="top: 23%; left: 8%;">CALMA</span>
+
+            <span class="grande inclinada-direita"
+            style="top: 31%; right: 4%;">ANSIEDADE</span>
+
+            <span class="pequena"
+            style="top: 43%; left: 10%;">TRISTEZA</span>
+
+            <span class="media inclinada-esquerda"
+            style="top: 51%; right: 7%;">ESPERANÇA</span>
+
+            <span class="media inclinada-direita"
+            style="top: 63%; left: 12%;">CONFIANÇA</span>
+
+            <span class="pequena"
+            style="bottom: 15%; right: 10%;">RAIVA</span>
+
+            <span class="media inclinada-esquerda"
+            style="bottom: 6%; left: 20%;">ORGULHO</span>
+
+        </div>
+    `,
+
+
+    pergunta2: `
+        <div class="fundo-emocoes">
+
+            <span class="pequena"
+            style="top: 5%; left: 8%;">ORGULHO</span>
+
+            <span class="media inclinada-esquerda"
+            style="top: 10%; right: 5%;">TRANQUILIDADE</span>
+
+            <span class="pequena inclinada-direita"
+            style="top: 23%; left: 10%;">ALEGRIA</span>
+
+            <span class="media vertical"
+            style="top: 30%; right: 7%;">MEDO</span>
+
+            <span class="grande inclinada-direita"
+            style="top: 42%; left: 4%;">INSEGURANÇA</span>
+
+            <span class="pequena"
+            style="top: 51%; right: 8%;">FELICIDADE</span>
+
+            <span class="media inclinada-esquerda"
+            style="top: 62%; left: 12%;">ALÍVIO</span>
+
+            <span class="pequena inclinada-direita"
+            style="bottom: 18%; right: 7%;">ESPERANÇA</span>
+
+            <span class="media"
+            style="bottom: 6%; left: 18%;">CURIOSIDADE</span>
+
+        </div>
+    `,
+
+
+    pergunta3: `
+        <div class="fundo-emocoes">
+
+            <span class="media inclinada-direita"
+            style="top: 4%; left: 7%;">FELICIDADE</span>
+
+            <span class="pequena"
+            style="top: 12%; right: 8%;">RAIVA</span>
+
+            <span class="pequena inclinada-esquerda"
+            style="top: 24%; left: 8%;">ESPERANÇA</span>
+
+            <span class="grande inclinada-direita"
+            style="top: 32%; right: 4%;">TRISTEZA</span>
+
+            <span class="pequena"
+            style="top: 44%; left: 12%;">ORGULHO</span>
+
+            <span class="media inclinada-esquerda"
+            style="top: 53%; right: 8%;">MEDO</span>
+
+            <span class="media inclinada-direita"
+            style="top: 64%; left: 14%;">ALEGRIA</span>
+
+            <span class="pequena"
+            style="bottom: 17%; right: 10%;">ALÍVIO</span>
+
+            <span class="media"
+            style="bottom: 6%; left: 20%;">CONFIANÇA</span>
+
+        </div>
+    `,
+
+
+    pergunta4: `
+        <div class="fundo-emocoes">
+
+            <span class="grande inclinada-direita"
+            style="top: 4%; left: 8%;">ANSIEDADE</span>
+
+            <span class="pequena"
+            style="top: 13%; right: 10%;">ORGULHO</span>
+
+            <span class="media vertical"
+            style="top: 24%; left: 6%;">ALEGRIA</span>
+
+            <span class="pequena inclinada-esquerda"
+            style="top: 28%; right: 8%;">ESPERANÇA</span>
+
+            <span class="media inclinada-direita"
+            style="top: 42%; left: 18%;">MEDO</span>
+
+            <span class="pequena"
+            style="top: 48%; right: 7%;">CURIOSIDADE</span>
+
+            <span class="grande inclinada-esquerda"
+            style="top: 60%; left: 5%;">TRANQUILIDADE</span>
+
+            <span class="media vertical"
+            style="bottom: 18%; right: 8%;">TRISTEZA</span>
+
+            <span class="pequena inclinada-direita"
+            style="bottom: 8%; left: 12%;">ALÍVIO</span>
+
+            <span class="pequena"
+            style="bottom: 5%; right: 28%;">CONFIANÇA</span>
+
+        </div>
+    `,
+
+
+    pergunta5: `
+        <div class="fundo-emocoes">
+
+            <span class="media inclinada-direita"
+            style="top: 4%; left: 8%;">SONHOS</span>
+
+            <span class="pequena"
+            style="top: 12%; right: 8%;">ORGULHO</span>
+
+            <span class="pequena inclinada-esquerda"
+            style="top: 24%; left: 7%;">ALEGRIA</span>
+
+            <span class="media vertical"
+            style="top: 29%; right: 7%;">MEDO</span>
+
+            <span class="grande inclinada-direita"
+            style="top: 40%; left: 6%;">ANSIEDADE</span>
+
+            <span class="pequena"
+            style="top: 50%; right: 8%;">DÚVIDA</span>
+
+            <span class="media inclinada-esquerda"
+            style="top: 61%; left: 14%;">ESPERANÇA</span>
+
+            <span class="pequena inclinada-direita"
+            style="bottom: 17%; right: 8%;">CONFIANÇA</span>
+
+            <span class="media"
+            style="bottom: 6%; left: 18%;">CURIOSIDADE</span>
+
+        </div>
+    `,
+
+
+    pergunta6: `
+        <div class="fundo-emocoes">
+
+            <span class="grande inclinada-direita"
+            style="top: 4%; left: 7%;">ANSIEDADE</span>
+
+            <span class="pequena"
+            style="top: 12%; right: 8%;">CALMA</span>
+
+            <span class="media vertical"
+            style="top: 23%; left: 7%;">RESPEITO</span>
+
+            <span class="pequena inclinada-esquerda"
+            style="top: 29%; right: 7%;">ALEGRIA</span>
+
+            <span class="media inclinada-direita"
+            style="top: 41%; left: 18%;">CONFIANÇA</span>
+
+            <span class="pequena"
+            style="top: 49%; right: 8%;">ORGULHO</span>
+
+            <span class="media inclinada-esquerda"
+            style="top: 61%; left: 10%;">APOIO</span>
+
+            <span class="pequena inclinada-direita"
+            style="bottom: 17%; right: 8%;">TRISTEZA</span>
+
+            <span class="pequena"
+            style="bottom: 6%; left: 20%;">ALÍVIO</span>
+
+        </div>
+    `
+};
+
+
+/* TRANSIÇÃO FADE */
+
+function trocarTela(proximaTela) {
+    document.body.classList.add("fade-out");
+
+    setTimeout(function() {
+        proximaTela();
+
+        document.body.classList.remove("fade-out");
+        document.body.classList.add("fade-in");
+
+        setTimeout(function() {
+            document.body.classList.remove("fade-in");
+        }, 400);
+
+    }, 400);
+}
 
 
 function comecarJogo() {
-    document.body.innerHTML = `
-        <h1>Vamos começar! 👋</h1>
-
-        <h2>Como você gostaria de ser chamado(a)?</h2>
-
-        <input type="text" id="nome" placeholder="Digite seu nome ou apelido">
-
-        <br><br>
-
-        <button onclick="verificarNome()">Continuar</button>
-    `;
-}
-
-
-function verificarNome() {
-    const nome = document.getElementById("nome").value;
-
-    if (nome.trim() !== "") {
-        nomeJogador = nome;
-        escolherAnimal();
-    }
-}
-
-
-function escolherAnimal() {
-    document.body.innerHTML = `
-        <h1>Escolha seu companheiro 🐾</h1>
-
-        <p>Escolha um animalzinho para acompanhar você durante o jogo!</p>
-
-        <div class="emocoes">
-            <button onclick="selecionarAnimal(this)">🐱<br>Gato</button>
-            <button onclick="selecionarAnimal(this)">🐶<br>Cachorro</button>
-            <button onclick="selecionarAnimal(this)">🦊<br>Raposa</button>
-            <button onclick="selecionarAnimal(this)">🐢<br>Tartaruga</button>
-            <button onclick="selecionarAnimal(this)">🐼<br>Panda</button>
-            <button onclick="selecionarAnimal(this)">🐧<br>Pinguim</button>
-        </div>
-
-        <br>
-
-        <button onclick="continuarJogo()">Continuar</button>
-    `;
-}
-
-
-function selecionarAnimal(botao) {
-    const botoes = document.querySelectorAll(".emocoes button");
-
-    botoes.forEach(function(item) {
-        item.style.border = "";
-    });
-
-    botao.style.border = "3px solid blue";
-    animalEscolhido = botao.innerText;
-}
-
-
-function continuarJogo() {
-    if (animalEscolhido !== "") {
-        document.body.innerHTML = `
-            <h1>Ótima escolha!</h1>
-
-            <p>Você escolheu: ${animalEscolhido}</p>
-
-            <p>Agora o jogo vai começar.</p>
-
-            <button onclick="primeiraQuestao()">Começar o jogo</button>
-        `;
-    }
+    trocarTela(primeiraQuestao);
 }
 
 
 function selecionarEmocao(botao) {
-    if (botao.style.border === "3px solid blue") {
-        botao.style.border = "";
-    } else {
-        botao.style.border = "3px solid blue";
-    }
+    botao.classList.toggle("selecionada");
 }
 
 
-function salvarRespostas() {
-    const botoes = document.querySelectorAll(".emocoes button");
+function pegarRespostasDaTela() {
+    const botoesSelecionados = document.querySelectorAll(
+        ".emocoes button.selecionada"
+    );
 
-    botoes.forEach(function(botao) {
-        if (botao.style.border === "3px solid blue") {
-            respostas.push(botao.innerText);
-        }
-    });
-}
+    let emocoesSelecionadas = [];
 
-
-function verificarEmocoes(proximaQuestao) {
-    const botoes = document.querySelectorAll(".emocoes button");
-    let selecionouEmocao = false;
-
-    botoes.forEach(function(botao) {
-        if (botao.style.border === "3px solid blue") {
-            selecionouEmocao = true;
-        }
+    botoesSelecionados.forEach(function(botao) {
+        emocoesSelecionadas.push(botao.innerText);
     });
 
-    if (selecionouEmocao) {
-        salvarRespostas();
-        proximaQuestao();
-    }
+    return emocoesSelecionadas;
 }
 
+
+/* PERGUNTA 1 */
 
 function primeiraQuestao() {
     document.body.innerHTML = `
-        <h1>${nomeJogador}, como você se sente quando o assunto é ENEM?</h1>
+        ${fundos.pergunta1}
 
-        <p>Escolha uma ou mais emoções que representem como você se sente:</p>
+        <div class="tela">
+            <h1>Quando várias atividades e provas acontecem ao mesmo tempo, como você costuma reagir?</h1>
 
-        <div class="emocoes">
-            <button onclick="selecionarEmocao(this)">Ansioso(a)</button>
-            <button onclick="selecionarEmocao(this)">Nervoso(a)</button>
-            <button onclick="selecionarEmocao(this)">Com medo</button>
-            <button onclick="selecionarEmocao(this)">Confiante</button>
-            <button onclick="selecionarEmocao(this)">Animado(a)</button>
-            <button onclick="selecionarEmocao(this)">Calmo(a)</button>
-            <button onclick="selecionarEmocao(this)">Pressionado(a)</button>
-            <button onclick="selecionarEmocao(this)">Indiferente</button>
+            <p>Escolha uma ou mais emoções que representem como você se sente:</p>
+
+            <div class="emocoes">
+                <button onclick="selecionarEmocao(this)">Ansioso(a)</button>
+                <button onclick="selecionarEmocao(this)">Sobrecarregado(a)</button>
+                <button onclick="selecionarEmocao(this)">Nervoso(a)</button>
+                <button onclick="selecionarEmocao(this)">Pressionado(a)</button>
+                <button onclick="selecionarEmocao(this)">Motivado(a)</button>
+                <button onclick="selecionarEmocao(this)">Tranquilo(a)</button>
+            </div>
+
+            <p>Quer detalhar como se sente? Escreva aqui:</p>
+
+            <textarea id="detalhe" placeholder="Escreva aqui..."></textarea>
+
+            <br><br>
+
+            <button onclick="salvarPrimeira()">Continuar</button>
         </div>
-
-        <p>Quer detalhar como se sente? Escreva aqui:</p>
-
-        <textarea placeholder="Escreva aqui..."></textarea>
-
-        <br><br>
-
-        <button onclick="verificarEmocoes(segundaQuestao)">Continuar</button>
     `;
 }
 
+
+function salvarPrimeira() {
+    const emocoes = pegarRespostasDaTela();
+
+    if (emocoes.length === 0) return;
+
+    respostasPerguntas.pergunta1 = emocoes.join(", ");
+    respostasPerguntas.detalhe1 = document.getElementById("detalhe").value;
+
+    respostas.push(...emocoes);
+
+    trocarTela(segundaQuestao);
+}
+
+
+/* PERGUNTA 2 */
 
 function segundaQuestao() {
     document.body.innerHTML = `
-        <h1>${nomeJogador}, como você se sente em relação ao seu futuro?</h1>
+        ${fundos.pergunta2}
 
-        <p>Escolha uma ou mais emoções que representem como você se sente:</p>
+        <div class="tela">
+            <h1>Qual situação escolar mais faz você perder o sono?</h1>
 
-        <div class="emocoes">
-            <button onclick="selecionarEmocao(this)">Esperançoso(a)</button>
-            <button onclick="selecionarEmocao(this)">Ansioso(a)</button>
-            <button onclick="selecionarEmocao(this)">Com medo</button>
-            <button onclick="selecionarEmocao(this)">Confiante</button>
-            <button onclick="selecionarEmocao(this)">Animado(a)</button>
-            <button onclick="selecionarEmocao(this)">Inseguro(a)</button>
-            <button onclick="selecionarEmocao(this)">Confuso(a)</button>
-            <button onclick="selecionarEmocao(this)">Tranquilo(a)</button>
+            <p>Escolha uma ou mais emoções que representem como você se sente:</p>
+
+            <div class="emocoes">
+                <button onclick="selecionarEmocao(this)">Ansioso(a)</button>
+                <button onclick="selecionarEmocao(this)">Preocupado(a)</button>
+                <button onclick="selecionarEmocao(this)">Estressado(a)</button>
+                <button onclick="selecionarEmocao(this)">Inseguro(a)</button>
+                <button onclick="selecionarEmocao(this)">Cansado(a)</button>
+                <button onclick="selecionarEmocao(this)">Tranquilo(a)</button>
+            </div>
+
+            <p>Quer detalhar como se sente? Escreva aqui:</p>
+
+            <textarea id="detalhe" placeholder="Escreva aqui..."></textarea>
+
+            <br><br>
+
+            <button onclick="salvarSegunda()">Continuar</button>
         </div>
-
-        <p>Quer detalhar como se sente? Escreva aqui:</p>
-
-        <textarea placeholder="Escreva aqui..."></textarea>
-
-        <br><br>
-
-        <button onclick="verificarEmocoes(terceiraQuestao)">Continuar</button>
     `;
 }
 
+
+function salvarSegunda() {
+    const emocoes = pegarRespostasDaTela();
+
+    if (emocoes.length === 0) return;
+
+    respostasPerguntas.pergunta2 = emocoes.join(", ");
+    respostasPerguntas.detalhe2 = document.getElementById("detalhe").value;
+
+    respostas.push(...emocoes);
+
+    trocarTela(terceiraQuestao);
+}
+
+
+/* PERGUNTA 3 */
 
 function terceiraQuestao() {
     document.body.innerHTML = `
-        <h1>${nomeJogador}, como você se sente quando está sozinho(a)?</h1>
+        ${fundos.pergunta3}
 
-        <p>Escolha uma ou mais emoções que representem como você se sente:</p>
+        <div class="tela">
+            <h1>Como você se sente em relação ao ENEM?</h1>
 
-        <div class="emocoes">
-            <button onclick="selecionarEmocao(this)">Tranquilo(a)</button>
-            <button onclick="selecionarEmocao(this)">Em paz</button>
-            <button onclick="selecionarEmocao(this)">Feliz</button>
-            <button onclick="selecionarEmocao(this)">Entediado(a)</button>
-            <button onclick="selecionarEmocao(this)">Triste</button>
-            <button onclick="selecionarEmocao(this)">Ansioso(a)</button>
-            <button onclick="selecionarEmocao(this)">Solitário(a)</button>
-            <button onclick="selecionarEmocao(this)">Aliviado(a)</button>
+            <p>Escolha uma ou mais emoções que representem como você se sente:</p>
+
+            <div class="emocoes">
+                <button onclick="selecionarEmocao(this)">Ansioso(a)</button>
+                <button onclick="selecionarEmocao(this)">Com medo</button>
+                <button onclick="selecionarEmocao(this)">Pressionado(a)</button>
+                <button onclick="selecionarEmocao(this)">Confiante</button>
+                <button onclick="selecionarEmocao(this)">Animado(a)</button>
+                <button onclick="selecionarEmocao(this)">Tranquilo(a)</button>
+            </div>
+
+            <p>Quer detalhar como se sente? Escreva aqui:</p>
+
+            <textarea id="detalhe" placeholder="Escreva aqui..."></textarea>
+
+            <br><br>
+
+            <button onclick="salvarTerceira()">Continuar</button>
         </div>
-
-        <p>Quer detalhar como se sente? Escreva aqui:</p>
-
-        <textarea placeholder="Escreva aqui..."></textarea>
-
-        <br><br>
-
-        <button onclick="verificarEmocoes(quartaQuestao)">Continuar</button>
     `;
 }
 
+
+function salvarTerceira() {
+    const emocoes = pegarRespostasDaTela();
+
+    if (emocoes.length === 0) return;
+
+    respostasPerguntas.pergunta3 = emocoes.join(", ");
+    respostasPerguntas.detalhe3 = document.getElementById("detalhe").value;
+
+    respostas.push(...emocoes);
+
+    trocarTela(quartaQuestao);
+}
+
+
+/* PERGUNTA 4 */
 
 function quartaQuestao() {
     document.body.innerHTML = `
-        <h1>${nomeJogador}, como você se sente em relação às notícias atuais nas redes sociais?</h1>
+        ${fundos.pergunta4}
 
-        <p>Escolha uma ou mais emoções que representem como você se sente:</p>
+        <div class="tela">
+            <h1>Você se sente confortável com os seus professores?</h1>
 
-        <div class="emocoes">
-            <button onclick="selecionarEmocao(this)">Informado(a)</button>
-            <button onclick="selecionarEmocao(this)">Curioso(a)</button>
-            <button onclick="selecionarEmocao(this)">Interessado(a)</button>
-            <button onclick="selecionarEmocao(this)">Surpreso(a)</button>
-            <button onclick="selecionarEmocao(this)">Preocupado(a)</button>
-            <button onclick="selecionarEmocao(this)">Ansioso(a)</button>
-            <button onclick="selecionarEmocao(this)">Confuso(a)</button>
-            <button onclick="selecionarEmocao(this)">Indiferente</button>
+            <p>Escolha uma ou mais emoções que representem como você se sente:</p>
+
+            <div class="emocoes">
+                <button onclick="selecionarEmocao(this)">Ansioso(a)</button>
+                <button onclick="selecionarEmocao(this)">Confortável</button>
+                <button onclick="selecionarEmocao(this)">Seguro(a)</button>
+                <button onclick="selecionarEmocao(this)">À vontade</button>
+                <button onclick="selecionarEmocao(this)">Desrespeitado(a)</button>
+                <button onclick="selecionarEmocao(this)">Desconfortável</button>
+            </div>
+
+            <p>Quer detalhar como se sente? Escreva aqui:</p>
+
+            <textarea id="detalhe" placeholder="Escreva aqui..."></textarea>
+
+            <br><br>
+
+            <button onclick="salvarQuarta()">Continuar</button>
         </div>
-
-        <p>Quer detalhar como se sente? Escreva aqui:</p>
-
-        <textarea placeholder="Escreva aqui..."></textarea>
-
-        <br><br>
-
-        <button onclick="verificarEmocoes(quintaQuestao)">Continuar</button>
     `;
 }
 
+
+function salvarQuarta() {
+    const emocoes = pegarRespostasDaTela();
+
+    if (emocoes.length === 0) return;
+
+    respostasPerguntas.pergunta4 = emocoes.join(", ");
+    respostasPerguntas.detalhe4 = document.getElementById("detalhe").value;
+
+    respostas.push(...emocoes);
+
+    trocarTela(quintaQuestao);
+}
+
+
+/* PERGUNTA 5 */
 
 function quintaQuestao() {
     document.body.innerHTML = `
-        <h1>${nomeJogador}, como você se sente em relação à escola?</h1>
+        ${fundos.pergunta5}
 
-        <p>Escolha uma ou mais emoções que representem como você se sente:</p>
+        <div class="tela">
+            <h1>Qual é a emoção que você sente sobre o seu futuro acadêmico ou profissional após o ensino médio?</h1>
 
-        <div class="emocoes">
-            <button onclick="selecionarEmocao(this)">Feliz</button>
-            <button onclick="selecionarEmocao(this)">Motivado(a)</button>
-            <button onclick="selecionarEmocao(this)">Tranquilo(a)</button>
-            <button onclick="selecionarEmocao(this)">Cansado(a)</button>
-            <button onclick="selecionarEmocao(this)">Ansioso(a)</button>
-            <button onclick="selecionarEmocao(this)">Preocupado(a)</button>
-            <button onclick="selecionarEmocao(this)">Desmotivado(a)</button>
-            <button onclick="selecionarEmocao(this)">Pressionado(a)</button>
+            <p>Escolha uma ou mais emoções que representem como você se sente:</p>
+
+            <div class="emocoes">
+                <button onclick="selecionarEmocao(this)">Ansioso(a)</button>
+                <button onclick="selecionarEmocao(this)">Esperançoso(a)</button>
+                <button onclick="selecionarEmocao(this)">Confiante</button>
+                <button onclick="selecionarEmocao(this)">Animado(a)</button>
+                <button onclick="selecionarEmocao(this)">Inseguro(a)</button>
+                <button onclick="selecionarEmocao(this)">Com medo</button>
+            </div>
+
+            <p>Quer detalhar como se sente? Escreva aqui:</p>
+
+            <textarea id="detalhe" placeholder="Escreva aqui..."></textarea>
+
+            <br><br>
+
+            <button onclick="salvarQuinta()">Continuar</button>
         </div>
-
-        <p>Quer detalhar como se sente? Escreva aqui:</p>
-
-        <textarea placeholder="Escreva aqui..."></textarea>
-
-        <br><br>
-
-        <button onclick="verificarEmocoes(sextaQuestao)">Continuar</button>
     `;
 }
 
+
+function salvarQuinta() {
+    const emocoes = pegarRespostasDaTela();
+
+    if (emocoes.length === 0) return;
+
+    respostasPerguntas.pergunta5 = emocoes.join(", ");
+    respostasPerguntas.detalhe5 = document.getElementById("detalhe").value;
+
+    respostas.push(...emocoes);
+
+    trocarTela(sextaQuestao);
+}
+
+
+/* PERGUNTA 6 */
 
 function sextaQuestao() {
     document.body.innerHTML = `
-        <h1>${nomeJogador}, como você se sente em relação a si mesmo(a)?</h1>
+        ${fundos.pergunta6}
 
-        <p>Escolha uma ou mais emoções que representem como você se sente:</p>
+        <div class="tela">
+            <h1>Como você avalia a sua sensação de segurança emocional dentro dos grupos de trabalho escolares?</h1>
 
-        <div class="emocoes">
-            <button onclick="selecionarEmocao(this)">Feliz</button>
-            <button onclick="selecionarEmocao(this)">Confiante</button>
-            <button onclick="selecionarEmocao(this)">Orgulhoso(a)</button>
-            <button onclick="selecionarEmocao(this)">Tranquilo(a)</button>
-            <button onclick="selecionarEmocao(this)">Inseguro(a)</button>
-            <button onclick="selecionarEmocao(this)">Confuso(a)</button>
-            <button onclick="selecionarEmocao(this)">Insatisfeito(a)</button>
-            <button onclick="selecionarEmocao(this)">Triste</button>
+            <p>Escolha uma ou mais emoções que representem como você se sente:</p>
+
+            <div class="emocoes">
+                <button onclick="selecionarEmocao(this)">Ansioso(a)</button>
+                <button onclick="selecionarEmocao(this)">Seguro(a)</button>
+                <button onclick="selecionarEmocao(this)">Confortável</button>
+                <button onclick="selecionarEmocao(this)">Apoiado(a)</button>
+                <button onclick="selecionarEmocao(this)">Desrespeitado(a)</button>
+                <button onclick="selecionarEmocao(this)">Desconfortável</button>
+            </div>
+
+            <p>Quer detalhar como se sente? Escreva aqui:</p>
+
+            <textarea id="detalhe" placeholder="Escreva aqui..."></textarea>
+
+            <br><br>
+
+            <button onclick="salvarSexta()">Ver resultado</button>
         </div>
-
-        <p>Quer detalhar como se sente? Escreva aqui:</p>
-
-        <textarea placeholder="Escreva aqui..."></textarea>
-
-        <br><br>
-
-        <button onclick="finalizarJogo()">Ver resultado</button>
     `;
 }
 
 
-function finalizarJogo() {
-    const botoes = document.querySelectorAll(".emocoes button");
-    let selecionouEmocao = false;
+function salvarSexta() {
+    const emocoes = pegarRespostasDaTela();
 
-    botoes.forEach(function(botao) {
-        if (botao.style.border === "3px solid blue") {
-            selecionouEmocao = true;
-        }
-    });
+    if (emocoes.length === 0) return;
 
-    if (!selecionouEmocao) {
-        return;
-    }
+    respostasPerguntas.pergunta6 = emocoes.join(", ");
+    respostasPerguntas.detalhe6 = document.getElementById("detalhe").value;
 
-    salvarRespostas();
+    respostas.push(...emocoes);
+
+    enviarParaPlanilha();
+    trocarTela(mostrarResultado);
+}
+
+
+/* ENVIAR PARA A PLANILHA */
+
+function enviarParaPlanilha() {
+    fetch(URL_PLANILHA, {
+        method: "POST",
+        body: JSON.stringify(respostasPerguntas)
+    })
+    .catch(function() {});
+}
+
+
+/* MOSTRAR RESULTADO */
+
+function mostrarResultado() {
 
     let contagem = {};
 
@@ -312,76 +611,49 @@ function finalizarJogo() {
         return b[1] - a[1];
     });
 
-    let emocaoPrincipal = resultado[0][0];
+    let topTres = resultado.slice(0, 3);
 
-    let mensagens = {
+    let maiorQuantidade = topTres[0][1];
 
-        "Ansioso(a)": "A ansiedade apareceu com frequência nas suas respostas. Algumas situações podem trazer preocupações ou expectativas sobre o presente e o futuro. Observar o que desperta esse sentimento pode ajudar a compreendê-lo melhor.",
+    let estatisticasHTML = "";
 
-        "Nervoso(a)": "O nervosismo apareceu com frequência nas suas respostas. Algumas situações podem causar tensão ou insegurança. Perceber em quais momentos isso acontece pode ajudar você a entender melhor seus sentimentos.",
+    topTres.forEach(function(item) {
 
-        "Com medo": "O medo apareceu com frequência nas suas respostas. Sentir medo diante de algumas situações é algo que pode acontecer. Conversar sobre aquilo que preocupa você pode ajudar.",
+        let emocao = item[0];
+        let quantidade = item[1];
 
-        "Confiante": "A confiança apareceu com frequência nas suas respostas. Você demonstrou segurança diante de algumas situações. Reconhecer suas capacidades e conquistas pode fortalecer ainda mais esse sentimento.",
+        let porcentagem = (quantidade / maiorQuantidade) * 100;
 
-        "Animado(a)": "A animação apareceu com frequência nas suas respostas. Algumas situações parecem despertar entusiasmo e expectativa positiva em você. Reconhecer esses momentos também é importante.",
+        estatisticasHTML += `
+            <div class="estatistica-item">
 
-        "Calmo(a)": "A calma apareceu com frequência nas suas respostas. Algumas situações parecem ser vividas por você com tranquilidade. Perceber o que contribui para essa sensação pode ser positivo.",
+                <div class="estatistica-titulo">
+                    <span>${emocao}</span>
+                    <span>${quantidade} vez(es)</span>
+                </div>
 
-        "Pressionado(a)": "A sensação de pressão apareceu com frequência nas suas respostas. Expectativas, responsabilidades ou decisões podem contribuir para esse sentimento. Lembre-se de que conversar com alguém de confiança pode ajudar.",
+                <div class="barra-fundo">
+                    <div
+                        class="barra"
+                        style="width: ${porcentagem}%"
+                    ></div>
+                </div>
 
-        "Indiferente": "A indiferença apareceu com frequência nas suas respostas. Talvez algumas dessas situações não tenham um impacto emocional muito forte para você neste momento. Cada pessoa pode reagir de maneiras diferentes.",
-
-        "Esperançoso(a)": "A esperança apareceu com frequência nas suas respostas. Parece que, mesmo diante de dúvidas ou desafios, você consegue enxergar possibilidades positivas para o futuro.",
-
-        "Inseguro(a)": "A insegurança apareceu com frequência nas suas respostas. Nem sempre é fácil ter certeza sobre decisões, situações ou sobre nós mesmos. Refletir e conversar com alguém de confiança pode ajudar.",
-
-        "Confuso(a)": "A confusão apareceu com frequência nas suas respostas. Algumas situações podem trazer muitas dúvidas ou sentimentos diferentes ao mesmo tempo. Dar espaço para refletir sobre isso pode ajudar a organizar melhor os pensamentos.",
-
-        "Tranquilo(a)": "A tranquilidade apareceu com frequência nas suas respostas. Algumas situações parecem ser vividas por você com mais calma e equilíbrio. Reconhecer o que contribui para essa sensação pode ser positivo.",
-
-        "Em paz": "A sensação de estar em paz apareceu com frequência nas suas respostas. Reconhecer os momentos e situações que contribuem para esse sentimento pode ajudar você a valorizá-los ainda mais.",
-
-        "Feliz": "A felicidade apareceu com frequência nas suas respostas. Parece que existem situações em sua vida que despertam sentimentos positivos. Reconhecer e valorizar esses momentos também é importante.",
-
-        "Entediado(a)": "O tédio apareceu com frequência nas suas respostas. Talvez algumas situações não estejam despertando muito interesse em você neste momento. Perceber o que chama sua atenção pode ajudar a encontrar novas formas de lidar com esses momentos.",
-
-        "Triste": "A tristeza apareceu com frequência nas suas respostas. Esse sentimento pode surgir em diferentes momentos da vida. Se sentir necessidade, compartilhar o que está sentindo com alguém de confiança pode ajudar.",
-
-        "Solitário(a)": "A sensação de solidão apareceu com frequência nas suas respostas. Mesmo quando estamos cercados por pessoas, às vezes podemos sentir falta de conexão. Conversar com alguém de confiança pode ajudar a compartilhar o que você está sentindo.",
-
-        "Aliviado(a)": "O alívio apareceu com frequência nas suas respostas. Algumas situações podem trazer uma sensação de descanso ou de que uma preocupação diminuiu. Perceber o que contribui para esse sentimento pode ser positivo.",
-
-        "Informado(a)": "A sensação de estar informado(a) apareceu com frequência nas suas respostas. Acompanhar acontecimentos pode ajudar você a compreender melhor o que acontece ao seu redor. Também é importante buscar informações em fontes confiáveis.",
-
-        "Curioso(a)": "A curiosidade apareceu com frequência nas suas respostas. Parece que você demonstra interesse em compreender melhor diferentes assuntos e acontecimentos. Fazer perguntas e buscar informações pode ser uma forma positiva de aprender.",
-
-        "Interessado(a)": "O interesse apareceu com frequência nas suas respostas. Alguns assuntos parecem despertar sua atenção e vontade de saber mais. Reconhecer aquilo que desperta seu interesse pode ajudar você a explorar novos conhecimentos.",
-
-        "Surpreso(a)": "A surpresa apareceu com frequência nas suas respostas. Algumas situações ou notícias podem trazer informações inesperadas. É natural precisar de um tempo para compreender acontecimentos novos.",
-
-        "Preocupado(a)": "A preocupação apareceu com frequência nas suas respostas. Algumas situações podem ocupar bastante espaço nos nossos pensamentos. Identificar o que está causando essa preocupação pode ser um primeiro passo para lidar melhor com ela.",
-
-        "Motivado(a)": "A motivação apareceu com frequência nas suas respostas. Parece que algumas situações despertam em você disposição para continuar, aprender ou enfrentar desafios. Reconhecer o que fortalece essa motivação pode ser positivo.",
-
-        "Cansado(a)": "O cansaço apareceu com frequência nas suas respostas. Talvez algumas situações estejam exigindo bastante de você. Perceber seus limites e reservar momentos para descansar também é importante.",
-
-        "Desmotivado(a)": "A desmotivação apareceu com frequência nas suas respostas. Às vezes pode ser difícil encontrar disposição para determinadas situações. Refletir sobre o que está contribuindo para esse sentimento pode ajudar.",
-
-        "Orgulhoso(a)": "O orgulho apareceu com frequência nas suas respostas. Reconhecer suas conquistas, esforços e qualidades pode ser uma forma importante de valorizar seu próprio caminho.",
-
-        "Insatisfeito(a)": "A insatisfação apareceu com frequência nas suas respostas. Talvez existam situações que você gostaria que fossem diferentes. Refletir sobre o que está causando esse sentimento pode ajudar a compreender melhor seus desejos e necessidades."
-    };
-
-    let mensagem = mensagens[emocaoPrincipal];
+            </div>
+        `;
+    });
 
     document.body.innerHTML = `
-        <h1>Você terminou o Jogo das Emoções!</h1>
+        <div class="tela">
 
-        <h2>${nomeJogador}, a emoção que apareceu com mais frequência nas suas respostas foi:</h2>
+            <h1>Suas respostas</h1>
 
-        <h1>${emocaoPrincipal}</h1>
+            <p>Estas foram as três emoções que apareceram com mais frequência nas suas respostas:</p>
 
-        <p>${mensagem}</p>
+            <div class="estatistica">
+                ${estatisticasHTML}
+            </div>
+
+        </div>
     `;
 }
