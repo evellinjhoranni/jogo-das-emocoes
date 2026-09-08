@@ -5,24 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Jogo das Emoções</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>Jogo das Emoções 💭</h1>
-    <p>No Jogo das Emoções, você encontrará diferentes situações do dia a dia.</p>
+    <div class="fundo-emocoes">
 
-<p>Em cada uma delas, você poderá escolher uma ou mais emoções que representem como você se sentiria naquela situação.</p>
+        <!-- TOPO -->
+        <span class="media inclinada-esquerda"
+        style="top: 3%; left: 8%;">ALEGRIA</span>
 
-<p>Não existem respostas certas ou erradas. Cada pessoa pode sentir de uma maneira diferente.</p>
+        <span class="pequena"
+        style="top: 8%; left: 48%;">MEDO</span>
 
-<p>Se você se sentir confortável, poderá explicar melhor o que está sentindo com suas próprias palavras.</p>
+        <span class="media vertical"
+        style="top: 4%; right: 10%;">CALMA</span>
 
-<p>No final do jogo, você verá uma estatística de acordo com as suas respostas.</p>
 
-<button onclick="comecarJogo()">Começar</button>
-<script src="script.js"></script>
+        <!-- PARTE SUPERIOR / INTERNA -->
+        <span class="pequena inclinada-direita"
+        style="top: 22%; left: 18%;">CURIOSIDADE</span>
+
+        <span class="media inclinada-esquerda"
+        style="top: 28%; right: 12%;">ORGULHO</span>
+
+
+        <!-- MEIO -->
+        <span class="pequena vertical"
+        style="top: 40%; left: 8%;">ALÍVIO</span>
+
+        <span class="media inclinada-direita"
+        style="top: 47%; left: 30%;">ESPERANÇA</span>
+
+        <span class="pequena"
+        style="top: 52%; right: 10%;">RAIVA</span>
+
+
+        <!-- PARTE INFERIOR / INTERNA -->
+        <span class="media inclinada-esquerda"
+        style="top: 66%; left: 12%;">CONFIANÇA</span>
+
+        <span class="pequena vertical"
+        style="top: 63%; right: 20%;">TRISTEZA</span>
+
+
+        <!-- PARTE DE BAIXO -->
+        <span class="media inclinada-direita"
+        style="bottom: 8%; left: 28%;">FELICIDADE</span>
+
+        <span class="grande inclinada-esquerda"
+        style="bottom: 4%; right: 4%;">ANSIEDADE</span>
+
+    </div>
+
+
+    <div class="tela">
+
+        <h1>Jogo das Emoções</h1>
+
+        <p>No Jogo das Emoções, você encontrará diferentes situações do dia a dia.</p>
+
+        <p>Em cada uma delas, você poderá escolher uma ou mais emoções que representem como você se sentiria naquela situação.</p>
+
+        <p>Não existem respostas certas ou erradas. Cada pessoa pode sentir de uma maneira diferente.</p>
+
+        <p>Se você se sentir confortável, poderá explicar melhor o que está sentindo com suas próprias palavras.</p>
+
+        <p>No final do jogo, você verá uma estatística de acordo com as suas respostas.</p>
+
+        <button onclick="comecarJogo()">Começar</button>
+
+    </div>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
