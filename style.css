@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;500;600;700&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -7,19 +9,99 @@ body {
     min-height: 100vh;
     background-color: #234E70;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: 'Nunito', sans-serif;
     text-align: center;
     padding: 20px 15px;
+    overflow-x: hidden;
+
+    transition: opacity 0.4s ease;
+}
+
+
+/* TRANSIÇÃO FADE */
+
+body.fade-out {
+    opacity: 0;
+}
+
+body.fade-in {
+    opacity: 1;
+}
+
+
+/* Fundo com palavras */
+
+.fundo-emocoes {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.fundo-emocoes span {
+    position: absolute;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    color: #1B3F5A;
+    opacity: 0.7;
+    white-space: nowrap;
+}
+
+
+/* Tamanhos diferentes */
+
+.fundo-emocoes .grande {
+    font-size: 48px;
+}
+
+.fundo-emocoes .media {
+    font-size: 32px;
+}
+
+.fundo-emocoes .pequena {
+    font-size: 20px;
+}
+
+
+/* Direções */
+
+.fundo-emocoes .vertical {
+    writing-mode: vertical-rl;
+}
+
+.fundo-emocoes .inclinada-direita {
+    transform: rotate(15deg);
+}
+
+.fundo-emocoes .inclinada-esquerda {
+    transform: rotate(-15deg);
+}
+
+
+/* Conteúdo da tela */
+
+.tela {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Títulos */
+
+h1,
+h2 {
+    font-family: 'Fredoka', sans-serif;
 }
 
 h1 {
-    font-size: 25px;
+    font-size: 26px;
     margin: 15px auto 20px;
     max-width: 600px;
 }
 
 h2 {
-    font-size: 20px;
+    font-size: 21px;
     margin: 15px auto;
     max-width: 600px;
 }
@@ -31,33 +113,30 @@ p {
     margin: 15px auto;
 }
 
+
+/* Botões gerais */
+
 button {
-    background-color: #1565C0;
+    background-color: #6BB6E8;
     color: white;
-    border: none;
+    border: 3px solid transparent;
     border-radius: 15px;
     padding: 15px 18px;
+    font-family: 'Nunito', sans-serif;
     font-size: 16px;
+    font-weight: 600;
     margin: 6px;
     cursor: pointer;
     min-height: 50px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-input,
-textarea {
-    width: 100%;
-    max-width: 500px;
-    border: none;
-    border-radius: 15px;
-    padding: 15px;
-    font-size: 16px;
-    margin-top: 10px;
+button:hover {
+    transform: scale(1.02);
 }
 
-textarea {
-    min-height: 120px;
-    resize: none;
-}
+
+/* Emoções */
 
 .emocoes {
     display: grid;
@@ -74,7 +153,74 @@ textarea {
     min-height: 60px;
 }
 
+
+/* Emoção selecionada */
+
+.emocoes button.selecionada {
+    background-color: #1565C0;
+    border: 3px solid white;
+}
+
+
+/* Campo de texto */
+
+input,
+textarea {
+    width: 100%;
+    max-width: 500px;
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+textarea {
+    min-height: 120px;
+    resize: none;
+}
+
+
+/* Estatística do resultado */
+
+.estatistica {
+    width: 100%;
+    max-width: 500px;
+    margin: 25px auto;
+    text-align: left;
+}
+
+.estatistica-item {
+    margin-bottom: 20px;
+}
+
+.estatistica-titulo {
+    display: flex;
+    justify-content: space-between;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.barra-fundo {
+    width: 100%;
+    height: 18px;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.barra {
+    height: 100%;
+    background-color: #6BB6E8;
+    border-radius: 20px;
+    transition: width 0.5s;
+}
+
+
 /* Ajustes para telas pequenas */
+
 @media (max-width: 400px) {
 
     body {
@@ -82,11 +228,11 @@ textarea {
     }
 
     h1 {
-        font-size: 22px;
+        font-size: 23px;
     }
 
     h2 {
-        font-size: 18px;
+        font-size: 19px;
     }
 
     p {
@@ -100,5 +246,23 @@ textarea {
     .emocoes button {
         font-size: 15px;
         padding: 12px 8px;
+    }
+
+    .estatistica-titulo {
+        font-size: 15px;
+    }
+
+    /* Palavras menores em celulares */
+
+    .fundo-emocoes .grande {
+        font-size: 38px;
+    }
+
+    .fundo-emocoes .media {
+        font-size: 26px;
+    }
+
+    .fundo-emocoes .pequena {
+        font-size: 17px;
     }
 }
