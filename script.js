@@ -34,203 +34,235 @@ function criarFundo(palavras) {
    ========================================================= */
 
 fundos.pergunta1 = criarFundo([
-    { texto: "ANSIEDADE", classe: "grande inclinada-direita", posicao: "top: 5%; left: 7%;" },
-    { texto: "CALMA", classe: "pequena", posicao: "top: 13%; right: 8%;" },
-    { texto: "CONFIANÇA", classe: "media inclinada-esquerda", posicao: "top: 27%; left: 12%;" },
-    { texto: "MEDO", classe: "pequena vertical", posicao: "top: 38%; right: 9%;" },
-    { texto: "ESPERANÇA", classe: "media inclinada-direita", posicao: "top: 51%; left: 6%;" },
-    { texto: "ALÍVIO", classe: "pequena", posicao: "top: 65%; right: 15%;" },
-    { texto: "CURIOSIDADE", classe: "media inclinada-esquerda", posicao: "bottom: 9%; left: 17%;" }
+    { texto: "ANSIEDADE", classe: "grande", posicao: "top: 5%; left: 6%;" },
+    { texto: "MEDO", classe: "pequena", posicao: "top: 7%; right: 10%;" },
+    { texto: "PREOCUPAÇÃO", classe: "media", posicao: "top: 20%; left: 8%;" },
+    { texto: "NERVOSISMO", classe: "pequena", posicao: "top: 22%; right: 7%;" },
+    { texto: "INSEGURANÇA", classe: "media", posicao: "top: 35%; left: 5%;" },
+    { texto: "DÚVIDA", classe: "pequena", posicao: "top: 37%; right: 12%;" },
+    { texto: "FRUSTRAÇÃO", classe: "grande", posicao: "top: 49%; left: 7%;" },
+    { texto: "TRISTEZA", classe: "pequena", posicao: "top: 51%; right: 8%;" },
+    { texto: "RAIVA", classe: "media", posicao: "top: 64%; left: 10%;" },
+    { texto: "VERGONHA", classe: "pequena", posicao: "top: 66%; right: 9%;" },
+    { texto: "CULPA", classe: "pequena", posicao: "top: 78%; left: 7%;" },
+    { texto: "ESPERANÇA", classe: "media", posicao: "top: 79%; right: 5%;" },
+    { texto: "CONFIANÇA", classe: "grande", posicao: "top: 91%; left: 5%;" },
+    { texto: "ALEGRIA", classe: "pequena", posicao: "top: 92%; right: 10%;" },
+    { texto: "ALÍVIO", classe: "media", posicao: "top: 31%; left: 38%;" },
+    { texto: "ORGULHO", classe: "pequena", posicao: "top: 43%; left: 42%;" },
+    { texto: "EMPOLGAÇÃO", classe: "media", posicao: "top: 57%; left: 35%;" },
+    { texto: "SURPRESA", classe: "pequena", posicao: "top: 70%; left: 39%;" },
+    { texto: "DESÂNIMO", classe: "pequena", posicao: "top: 84%; left: 34%;" },
+    { texto: "ENTUSIASMO", classe: "media", posicao: "top: 87%; left: 45%;" }
 ]);
+
 
 fundos.pergunta2 = criarFundo([
-    { texto: "ORGULHO", classe: "media inclinada-esquerda", posicao: "top: 4%; left: 8%;" },
+    { texto: "ORGULHO", classe: "media", posicao: "top: 4%; left: 8%;" },
     { texto: "TRANQUILIDADE", classe: "pequena", posicao: "top: 15%; right: 7%;" },
     { texto: "ALEGRIA", classe: "media", posicao: "top: 29%; left: 5%;" },
-    { texto: "INSEGURANÇA", classe: "grande inclinada-direita", posicao: "top: 40%; right: 4%;" },
+    { texto: "INSEGURANÇA", classe: "grande", posicao: "top: 40%; right: 4%;" },
     { texto: "RESPEITO", classe: "pequena", posicao: "top: 53%; left: 13%;" },
-    { texto: "CONFIANÇA", classe: "media vertical", posicao: "top: 67%; right: 10%;" },
-    { texto: "ALÍVIO", classe: "pequena inclinada-direita", posicao: "bottom: 6%; left: 24%;" }
+    { texto: "CONFIANÇA", classe: "media", posicao: "top: 67%; right: 10%;" },
+    { texto: "ALÍVIO", classe: "pequena", posicao: "bottom: 6%; left: 24%;" }
 ]);
 
+
 fundos.pergunta3 = criarFundo([
-    { texto: "ESPERANÇA", classe: "media inclinada-direita", posicao: "top: 5%; left: 6%;" },
+    { texto: "ESPERANÇA", classe: "media", posicao: "top: 5%; left: 6%;" },
     { texto: "DÚVIDA", classe: "pequena", posicao: "top: 12%; right: 10%;" },
-    { texto: "MOTIVAÇÃO", classe: "media vertical", posicao: "top: 26%; left: 8%;" },
-    { texto: "MEDO", classe: "grande inclinada-esquerda", posicao: "top: 39%; right: 3%;" },
+    { texto: "MOTIVAÇÃO", classe: "media", posicao: "top: 26%; left: 8%;" },
+    { texto: "MEDO", classe: "grande", posicao: "top: 39%; right: 3%;" },
     { texto: "CONFIANÇA", classe: "pequena", posicao: "top: 51%; left: 17%;" },
-    { texto: "CURIOSIDADE", classe: "media inclinada-direita", posicao: "top: 63%; right: 8%;" },
+    { texto: "CURIOSIDADE", classe: "media", posicao: "top: 63%; right: 8%;" },
     { texto: "ANIMAÇÃO", classe: "pequena", posicao: "bottom: 7%; left: 22%;" }
 ]);
 
+
 fundos.pergunta4 = criarFundo([
-    { texto: "ACOLHIMENTO", classe: "media inclinada-direita", posicao: "top: 4%; left: 7%;" },
+    { texto: "ACOLHIMENTO", classe: "media", posicao: "top: 4%; left: 7%;" },
     { texto: "DESCONFORTO", classe: "pequena", posicao: "top: 14%; right: 8%;" },
-    { texto: "RESPEITO", classe: "grande inclinada-esquerda", posicao: "top: 28%; left: 4%;" },
+    { texto: "RESPEITO", classe: "grande", posicao: "top: 28%; left: 4%;" },
     { texto: "SEGURANÇA", classe: "media", posicao: "top: 42%; right: 11%;" },
-    { texto: "DÚVIDA", classe: "pequena vertical", posicao: "top: 55%; left: 12%;" },
-    { texto: "CONFIANÇA", classe: "media inclinada-esquerda", posicao: "top: 67%; right: 5%;" },
+    { texto: "DÚVIDA", classe: "pequena", posicao: "top: 55%; left: 12%;" },
+    { texto: "CONFIANÇA", classe: "media", posicao: "top: 67%; right: 5%;" },
     { texto: "CALMA", classe: "pequena", posicao: "bottom: 6%; left: 27%;" }
 ]);
 
+
 fundos.pergunta5 = criarFundo([
-    { texto: "PRESSÃO", classe: "grande inclinada-direita", posicao: "top: 4%; left: 5%;" },
+    { texto: "PRESSÃO", classe: "grande", posicao: "top: 4%; left: 5%;" },
     { texto: "CORAGEM", classe: "pequena", posicao: "top: 13%; right: 9%;" },
-    { texto: "PREOCUPAÇÃO", classe: "media vertical", posicao: "top: 28%; left: 8%;" },
-    { texto: "ESPERANÇA", classe: "media inclinada-esquerda", posicao: "top: 40%; right: 6%;" },
+    { texto: "PREOCUPAÇÃO", classe: "media", posicao: "top: 28%; left: 8%;" },
+    { texto: "ESPERANÇA", classe: "media", posicao: "top: 40%; right: 6%;" },
     { texto: "CONFIANÇA", classe: "pequena", posicao: "top: 53%; left: 14%;" },
-    { texto: "MEDO", classe: "media inclinada-direita", posicao: "top: 65%; right: 10%;" },
+    { texto: "MEDO", classe: "media", posicao: "top: 65%; right: 10%;" },
     { texto: "ALÍVIO", classe: "pequena", posicao: "bottom: 7%; left: 23%;" }
 ]);
 
+
 fundos.pergunta6 = criarFundo([
-    { texto: "APOIO", classe: "media inclinada-esquerda", posicao: "top: 5%; left: 8%;" },
+    { texto: "APOIO", classe: "media", posicao: "top: 5%; left: 8%;" },
     { texto: "INSEGURANÇA", classe: "grande", posicao: "top: 12%; right: 3%;" },
     { texto: "CONFORTO", classe: "pequena", posicao: "top: 29%; left: 10%;" },
-    { texto: "SOLIDÃO", classe: "media vertical", posicao: "top: 41%; right: 8%;" },
-    { texto: "RESPEITO", classe: "media inclinada-direita", posicao: "top: 54%; left: 15%;" },
+    { texto: "SOLIDÃO", classe: "media", posicao: "top: 41%; right: 8%;" },
+    { texto: "RESPEITO", classe: "media", posicao: "top: 54%; left: 15%;" },
     { texto: "CONFIANÇA", classe: "pequena", posicao: "top: 67%; right: 15%;" },
-    { texto: "PERTENCIMENTO", classe: "pequena inclinada-esquerda", posicao: "bottom: 6%; left: 17%;" }
+    { texto: "PERTENCIMENTO", classe: "pequena", posicao: "bottom: 6%; left: 17%;" }
 ]);
 
+
 fundos.pergunta7 = criarFundo([
-    { texto: "SOBRECARGA", classe: "grande inclinada-esquerda", posicao: "top: 4%; left: 6%;" },
+    { texto: "SOBRECARGA", classe: "grande", posicao: "top: 4%; left: 6%;" },
     { texto: "MOTIVAÇÃO", classe: "media", posicao: "top: 13%; right: 8%;" },
-    { texto: "CANSAÇO", classe: "pequena vertical", posicao: "top: 27%; left: 8%;" },
-    { texto: "ANSIEDADE", classe: "media inclinada-direita", posicao: "top: 40%; right: 5%;" },
+    { texto: "CANSAÇO", classe: "pequena", posicao: "top: 27%; left: 8%;" },
+    { texto: "ANSIEDADE", classe: "media", posicao: "top: 40%; right: 5%;" },
     { texto: "PRESSÃO", classe: "pequena", posicao: "top: 53%; left: 16%;" },
-    { texto: "TRANQUILIDADE", classe: "media inclinada-esquerda", posicao: "top: 65%; right: 8%;" },
+    { texto: "TRANQUILIDADE", classe: "media", posicao: "top: 65%; right: 8%;" },
     { texto: "ALÍVIO", classe: "pequena", posicao: "bottom: 6%; left: 25%;" }
 ]);
 
+
 fundos.pergunta8 = criarFundo([
-    { texto: "COBRANÇA", classe: "media inclinada-direita", posicao: "top: 4%; left: 8%;" },
+    { texto: "COBRANÇA", classe: "media", posicao: "top: 4%; left: 8%;" },
     { texto: "CANSAÇO", classe: "pequena", posicao: "top: 15%; right: 7%;" },
-    { texto: "INJUSTIÇA", classe: "grande vertical", posicao: "top: 29%; left: 4%;" },
-    { texto: "FRUSTRAÇÃO", classe: "media inclinada-esquerda", posicao: "top: 43%; right: 8%;" },
+    { texto: "INJUSTIÇA", classe: "grande", posicao: "top: 29%; left: 4%;" },
+    { texto: "FRUSTRAÇÃO", classe: "media", posicao: "top: 43%; right: 8%;" },
     { texto: "RAIVA", classe: "pequena", posicao: "top: 56%; left: 14%;" },
     { texto: "COMPREENSÃO", classe: "media", posicao: "top: 68%; right: 5%;" },
-    { texto: "ALÍVIO", classe: "pequena inclinada-direita", posicao: "bottom: 6%; left: 23%;" }
+    { texto: "ALÍVIO", classe: "pequena", posicao: "bottom: 6%; left: 23%;" }
 ]);
 
+
 fundos.pergunta9 = criarFundo([
-    { texto: "NERVOSISMO", classe: "media inclinada-esquerda", posicao: "top: 4%; left: 6%;" },
+    { texto: "NERVOSISMO", classe: "media", posicao: "top: 4%; left: 6%;" },
     { texto: "CURIOSIDADE", classe: "pequena", posicao: "top: 12%; right: 10%;" },
-    { texto: "PRESSÃO", classe: "grande inclinada-direita", posicao: "top: 28%; left: 5%;" },
-    { texto: "CONFIANÇA", classe: "media vertical", posicao: "top: 42%; right: 8%;" },
+    { texto: "PRESSÃO", classe: "grande", posicao: "top: 28%; left: 5%;" },
+    { texto: "CONFIANÇA", classe: "media", posicao: "top: 42%; right: 8%;" },
     { texto: "DÚVIDA", classe: "pequena", posicao: "top: 55%; left: 16%;" },
-    { texto: "ESPERANÇA", classe: "media inclinada-esquerda", posicao: "top: 66%; right: 6%;" },
+    { texto: "ESPERANÇA", classe: "media", posicao: "top: 66%; right: 6%;" },
     { texto: "ANIMAÇÃO", classe: "pequena", posicao: "bottom: 7%; left: 25%;" }
 ]);
 
+
 fundos.pergunta10 = criarFundo([
-    { texto: "SURPRESA", classe: "grande inclinada-direita", posicao: "top: 5%; left: 7%;" },
+    { texto: "SURPRESA", classe: "grande", posicao: "top: 5%; left: 7%;" },
     { texto: "DÚVIDA", classe: "pequena", posicao: "top: 13%; right: 9%;" },
     { texto: "NERVOSISMO", classe: "media", posicao: "top: 27%; left: 5%;" },
-    { texto: "CURIOSIDADE", classe: "media vertical", posicao: "top: 40%; right: 6%;" },
+    { texto: "CURIOSIDADE", classe: "media", posicao: "top: 40%; right: 6%;" },
     { texto: "PREOCUPAÇÃO", classe: "pequena", posicao: "top: 54%; left: 14%;" },
-    { texto: "CALMA", classe: "media inclinada-esquerda", posicao: "top: 66%; right: 10%;" },
-    { texto: "CONFUSÃO", classe: "pequena inclinada-direita", posicao: "bottom: 6%; left: 22%;" }
+    { texto: "CALMA", classe: "media", posicao: "top: 66%; right: 10%;" },
+    { texto: "CONFUSÃO", classe: "pequena", posicao: "bottom: 6%; left: 22%;" }
 ]);
 
+
 fundos.pergunta11 = criarFundo([
-    { texto: "FRUSTRAÇÃO", classe: "media inclinada-esquerda", posicao: "top: 4%; left: 6%;" },
-    { texto: "INVISIBILIDADE", classe: "pequena", posicao: "top: 14%; right: 6%;" },
-    { texto: "TRISTEZA", classe: "grande", posicao: "top: 28%; left: 4%;" },
-    { texto: "RAIVA", classe: "media vertical", posicao: "top: 42%; right: 9%;" },
-    { texto: "SOLIDÃO", classe: "pequena", posicao: "top: 55%; left: 14%;" },
-    { texto: "CORAGEM", classe: "media inclinada-direita", posicao: "top: 67%; right: 6%;" },
+    { texto: "FRUSTRAÇÃO", classe: "media", posicao: "top: 4%; left: 6%;" },
+    { texto: "TRISTEZA", classe: "pequena", posicao: "top: 14%; right: 6%;" },
+    { texto: "SOLIDÃO", classe: "grande", posicao: "top: 28%; left: 4%;" },
+    { texto: "RAIVA", classe: "media", posicao: "top: 42%; right: 9%;" },
+    { texto: "INSEGURANÇA", classe: "pequena", posicao: "top: 55%; left: 14%;" },
+    { texto: "CORAGEM", classe: "media", posicao: "top: 67%; right: 6%;" },
     { texto: "ESPERANÇA", classe: "pequena", posicao: "bottom: 6%; left: 25%;" }
 ]);
 
+
 fundos.pergunta12 = criarFundo([
-    { texto: "PREOCUPAÇÃO", classe: "media inclinada-direita", posicao: "top: 5%; left: 8%;" },
-    { texto: "INSÔNIA", classe: "grande vertical", posicao: "top: 13%; right: 3%;" },
+    { texto: "PREOCUPAÇÃO", classe: "media", posicao: "top: 5%; left: 8%;" },
+    { texto: "INSÔNIA", classe: "grande", posicao: "top: 13%; right: 3%;" },
     { texto: "ANSIEDADE", classe: "media", posicao: "top: 29%; left: 5%;" },
-    { texto: "CANSAÇO", classe: "pequena inclinada-esquerda", posicao: "top: 42%; right: 9%;" },
-    { texto: "MEDO", classe: "media inclinada-direita", posicao: "top: 55%; left: 14%;" },
+    { texto: "CANSAÇO", classe: "pequena", posicao: "top: 42%; right: 9%;" },
+    { texto: "MEDO", classe: "media", posicao: "top: 55%; left: 14%;" },
     { texto: "ALÍVIO", classe: "pequena", posicao: "top: 68%; right: 12%;" },
     { texto: "TRANQUILIDADE", classe: "media", posicao: "bottom: 6%; left: 20%;" }
 ]);
 
+
 fundos.pergunta13 = criarFundo([
-    { texto: "ESCUTA", classe: "media inclinada-esquerda", posicao: "top: 4%; left: 8%;" },
+    { texto: "ESCUTA", classe: "media", posicao: "top: 4%; left: 8%;" },
     { texto: "COMPREENSÃO", classe: "grande", posicao: "top: 12%; right: 3%;" },
     { texto: "RESPEITO", classe: "pequena", posicao: "top: 28%; left: 6%;" },
-    { texto: "EMPATIA", classe: "media vertical", posicao: "top: 42%; right: 8%;" },
-    { texto: "ACOLHIMENTO", classe: "media inclinada-direita", posicao: "top: 55%; left: 11%;" },
+    { texto: "EMPATIA", classe: "media", posicao: "top: 42%; right: 8%;" },
+    { texto: "ACOLHIMENTO", classe: "media", posicao: "top: 55%; left: 11%;" },
     { texto: "CONFIANÇA", classe: "pequena", posicao: "top: 68%; right: 15%;" },
     { texto: "ESPERANÇA", classe: "media", posicao: "bottom: 6%; left: 24%;" }
 ]);
 
+
 fundos.pergunta14 = criarFundo([
-    { texto: "VERGONHA", classe: "media inclinada-direita", posicao: "top: 4%; left: 7%;" },
+    { texto: "VERGONHA", classe: "media", posicao: "top: 4%; left: 7%;" },
     { texto: "NERVOSISMO", classe: "pequena", posicao: "top: 14%; right: 9%;" },
-    { texto: "INSEGURANÇA", classe: "grande inclinada-esquerda", posicao: "top: 28%; left: 3%;" },
+    { texto: "INSEGURANÇA", classe: "grande", posicao: "top: 28%; left: 3%;" },
     { texto: "CORAGEM", classe: "media", posicao: "top: 42%; right: 7%;" },
-    { texto: "ANSIEDADE", classe: "pequena vertical", posicao: "top: 55%; left: 15%;" },
-    { texto: "ORGULHO", classe: "media inclinada-direita", posicao: "top: 67%; right: 8%;" },
+    { texto: "ANSIEDADE", classe: "pequena", posicao: "top: 55%; left: 15%;" },
+    { texto: "ORGULHO", classe: "media", posicao: "top: 67%; right: 8%;" },
     { texto: "CONFIANÇA", classe: "pequena", posicao: "bottom: 6%; left: 25%;" }
 ]);
 
+
 fundos.pergunta15 = criarFundo([
-    { texto: "RESPEITO", classe: "grande inclinada-esquerda", posicao: "top: 5%; left: 6%;" },
+    { texto: "RESPEITO", classe: "grande", posicao: "top: 5%; left: 6%;" },
     { texto: "PERTENCIMENTO", classe: "media", posicao: "top: 13%; right: 4%;" },
-    { texto: "SEGURANÇA", classe: "pequena vertical", posicao: "top: 28%; left: 9%;" },
-    { texto: "DÚVIDA", classe: "media inclinada-direita", posicao: "top: 41%; right: 8%;" },
+    { texto: "SEGURANÇA", classe: "pequena", posicao: "top: 28%; left: 9%;" },
+    { texto: "DÚVIDA", classe: "media", posicao: "top: 41%; right: 8%;" },
     { texto: "CONFIANÇA", classe: "pequena", posicao: "top: 54%; left: 14%;" },
-    { texto: "ACOLHIMENTO", classe: "media inclinada-esquerda", posicao: "top: 67%; right: 6%;" },
+    { texto: "ACOLHIMENTO", classe: "media", posicao: "top: 67%; right: 6%;" },
     { texto: "TRANQUILIDADE", classe: "pequena", posicao: "bottom: 6%; left: 23%;" }
 ]);
 
+
 fundos.pergunta16 = criarFundo([
-    { texto: "FRUSTRAÇÃO", classe: "media inclinada-direita", posicao: "top: 4%; left: 5%;" },
+    { texto: "FRUSTRAÇÃO", classe: "media", posicao: "top: 4%; left: 5%;" },
     { texto: "CULPA", classe: "pequena", posicao: "top: 14%; right: 9%;" },
-    { texto: "VERGONHA", classe: "media vertical", posicao: "top: 28%; left: 8%;" },
-    { texto: "RAIVA", classe: "grande inclinada-esquerda", posicao: "top: 41%; right: 3%;" },
+    { texto: "VERGONHA", classe: "media", posicao: "top: 28%; left: 8%;" },
+    { texto: "RAIVA", classe: "grande", posicao: "top: 41%; right: 3%;" },
     { texto: "TRISTEZA", classe: "pequena", posicao: "top: 54%; left: 15%;" },
     { texto: "PERDÃO", classe: "media", posicao: "top: 67%; right: 10%;" },
-    { texto: "APRENDIZADO", classe: "pequena inclinada-direita", posicao: "bottom: 6%; left: 21%;" }
+    { texto: "APRENDIZADO", classe: "pequena", posicao: "bottom: 6%; left: 21%;" }
 ]);
 
+
 fundos.pergunta17 = criarFundo([
-    { texto: "EXPECTATIVA", classe: "grande inclinada-direita", posicao: "top: 4%; left: 6%;" },
+    { texto: "EXPECTATIVA", classe: "grande", posicao: "top: 4%; left: 6%;" },
     { texto: "MEDO", classe: "pequena", posicao: "top: 13%; right: 10%;" },
-    { texto: "DÚVIDA", classe: "media vertical", posicao: "top: 28%; left: 7%;" },
-    { texto: "ESPERANÇA", classe: "media inclinada-esquerda", posicao: "top: 41%; right: 6%;" },
+    { texto: "DÚVIDA", classe: "media", posicao: "top: 28%; left: 7%;" },
+    { texto: "ESPERANÇA", classe: "media", posicao: "top: 41%; right: 6%;" },
     { texto: "PRESSÃO", classe: "pequena", posicao: "top: 55%; left: 14%;" },
-    { texto: "CONFIANÇA", classe: "media inclinada-direita", posicao: "top: 67%; right: 8%;" },
+    { texto: "CONFIANÇA", classe: "media", posicao: "top: 67%; right: 8%;" },
     { texto: "CORAGEM", classe: "pequena", posicao: "bottom: 6%; left: 25%;" }
 ]);
 
+
 fundos.pergunta18 = criarFundo([
-    { texto: "SOLIDÃO", classe: "grande inclinada-esquerda", posicao: "top: 5%; left: 5%;" },
+    { texto: "SOLIDÃO", classe: "grande", posicao: "top: 5%; left: 5%;" },
     { texto: "TIMIDEZ", classe: "pequena", posicao: "top: 14%; right: 9%;" },
     { texto: "INSEGURANÇA", classe: "media", posicao: "top: 29%; left: 8%;" },
-    { texto: "CORAGEM", classe: "media vertical", posicao: "top: 42%; right: 7%;" },
+    { texto: "CORAGEM", classe: "media", posicao: "top: 42%; right: 7%;" },
     { texto: "CURIOSIDADE", classe: "pequena", posicao: "top: 55%; left: 15%;" },
-    { texto: "PERTENCIMENTO", classe: "media inclinada-direita", posicao: "top: 67%; right: 5%;" },
+    { texto: "PERTENCIMENTO", classe: "media", posicao: "top: 67%; right: 5%;" },
     { texto: "ESPERANÇA", classe: "pequena", posicao: "bottom: 6%; left: 23%;" }
 ]);
 
+
 fundos.pergunta19 = criarFundo([
-    { texto: "AUTENTICIDADE", classe: "media inclinada-direita", posicao: "top: 4%; left: 6%;" },
+    { texto: "AUTENTICIDADE", classe: "media", posicao: "top: 4%; left: 6%;" },
     { texto: "LIBERDADE", classe: "grande", posicao: "top: 13%; right: 4%;" },
-    { texto: "MEDO", classe: "pequena vertical", posicao: "top: 29%; left: 9%;" },
-    { texto: "ACEITAÇÃO", classe: "media inclinada-esquerda", posicao: "top: 42%; right: 8%;" },
+    { texto: "MEDO", classe: "pequena", posicao: "top: 29%; left: 9%;" },
+    { texto: "ACEITAÇÃO", classe: "media", posicao: "top: 42%; right: 8%;" },
     { texto: "INSEGURANÇA", classe: "pequena", posicao: "top: 55%; left: 14%;" },
     { texto: "CONFIANÇA", classe: "media", posicao: "top: 67%; right: 10%;" },
-    { texto: "RESPEITO", classe: "pequena inclinada-direita", posicao: "bottom: 6%; left: 24%;" }
+    { texto: "RESPEITO", classe: "pequena", posicao: "bottom: 6%; left: 24%;" }
 ]);
 
+
 fundos.pergunta20 = criarFundo([
-    { texto: "ACOLHIMENTO", classe: "grande inclinada-esquerda", posicao: "top: 4%; left: 5%;" },
+    { texto: "ACOLHIMENTO", classe: "grande", posicao: "top: 4%; left: 5%;" },
     { texto: "CALMA", classe: "pequena", posicao: "top: 13%; right: 9%;" },
     { texto: "CONFIANÇA", classe: "media", posicao: "top: 28%; left: 8%;" },
-    { texto: "ESPERANÇA", classe: "media vertical", posicao: "top: 42%; right: 6%;" },
+    { texto: "ESPERANÇA", classe: "media", posicao: "top: 42%; right: 6%;" },
     { texto: "ALÍVIO", classe: "pequena", posicao: "top: 55%; left: 15%;" },
-    { texto: "CONFUSÃO", classe: "media inclinada-direita", posicao: "top: 67%; right: 8%;" },
-    { texto: "CURIOSIDADE", classe: "pequena inclinada-esquerda", posicao: "bottom: 6%; left: 22%;" }
+    { texto: "CONFUSÃO", classe: "media", posicao: "top: 67%; right: 8%;" },
+    { texto: "CURIOSIDADE", classe: "pequena", posicao: "bottom: 6%; left: 22%;" }
 ]);
 
 
@@ -425,6 +457,20 @@ const opcoesEspecificas = [
 
 
 /* =========================================================
+   INICIAR JOGO
+   ========================================================= */
+
+function iniciarJogo() {
+
+    indiceAtual = 0;
+    respostas = [];
+    respostasPerguntas = {};
+
+    trocarTela(mostrarProximaPergunta);
+}
+
+
+/* =========================================================
    TRANSIÇÃO
    ========================================================= */
 
@@ -448,27 +494,6 @@ function trocarTela(proximaTela) {
 
 
 /* =========================================================
-   COMEÇAR O JOGO
-   ========================================================= */
-
-function comecarJogo() {
-
-    respostas = [];
-
-    respostasPerguntas = {};
-
-    for (let i = 1; i <= 20; i++) {
-        respostasPerguntas["pergunta" + i] = "";
-        respostasPerguntas["detalhe" + i] = "";
-    }
-
-    indiceAtual = 0;
-
-    trocarTela(mostrarProximaPergunta);
-}
-
-
-/* =========================================================
    MOSTRAR PRÓXIMA PERGUNTA
    ========================================================= */
 
@@ -482,17 +507,22 @@ function mostrarProximaPergunta() {
 
     const pergunta = perguntas[indiceAtual];
 
-    let conteudo = "";
+document.body.setAttribute(
+    "data-tema",
+    String(indiceAtual % 10)
+);
 
-    /* -----------------------------------------
+    let conteudo = "";
+    
+const fundoAtual = fundos["pergunta" + pergunta.id] || "";
+
+    /* =========================================================
        PERGUNTA DE EMOÇÕES
-       ----------------------------------------- */
+       ========================================================= */
 
     if (pergunta.tipo === "emocao") {
 
         conteudo = `
-            <p>Escolha uma ou mais emoções que representem como você se sente:</p>
-
             <div class="emocoes">
 
                 ${pergunta.emocao.map(function(emocao) {
@@ -508,19 +538,17 @@ function mostrarProximaPergunta() {
 
             </div>
 
-            <p>Quer detalhar como se sente? Escreva aqui:</p>
-
             <textarea
                 id="detalhe"
-                placeholder="Escreva aqui..."
+                placeholder="Quer detalhar como se sente? Escreva aqui..."
             ></textarea>
         `;
     }
 
 
-    /* -----------------------------------------
+    /* =========================================================
        PERGUNTA COM SIM / NÃO
-       ----------------------------------------- */
+       ========================================================= */
 
     else if (pergunta.tipo === "opcoes") {
 
@@ -543,9 +571,9 @@ function mostrarProximaPergunta() {
     }
 
 
-    /* -----------------------------------------
+    /* =========================================================
        PERGUNTA DE ESCREVER
-       ----------------------------------------- */
+       ========================================================= */
 
     else if (pergunta.tipo === "escrita") {
 
@@ -559,6 +587,10 @@ function mostrarProximaPergunta() {
         `;
     }
 
+
+    /* =========================================================
+       MONTAR TELA DA PERGUNTA
+       ========================================================= */
 
     document.body.innerHTML = `
         ${fundos["pergunta" + pergunta.id] || ""}
@@ -588,6 +620,7 @@ function mostrarProximaPergunta() {
    ========================================================= */
 
 function selecionarEmocao(botao) {
+
     botao.classList.toggle("selecionada");
 }
 
@@ -598,7 +631,8 @@ function selecionarEmocao(botao) {
 
 function selecionarOpcao(botao) {
 
-    const botoes = document.querySelectorAll(".emocoes button");
+    const botoes =
+        document.querySelectorAll(".emocoes button");
 
     botoes.forEach(function(item) {
         item.classList.remove("selecionada");
@@ -620,62 +654,75 @@ function salvarPergunta() {
     let detalhe = "";
 
 
-    /* -----------------------------------------
+    /* =========================================================
        EMOÇÕES
-       ----------------------------------------- */
+       ========================================================= */
 
     if (pergunta.tipo === "emocao") {
 
         const botoesSelecionados =
-            document.querySelectorAll(".emocoes button.selecionada");
+            document.querySelectorAll(
+                ".emocoes button.selecionada"
+            );
 
         let emocoesSelecionadas = [];
 
         botoesSelecionados.forEach(function(botao) {
-            emocoesSelecionadas.push(botao.innerText.trim());
+
+            emocoesSelecionadas.push(
+                botao.innerText.trim()
+            );
+
         });
 
-        /* É obrigatório escolher pelo menos uma emoção */
+
+        /* Pelo menos uma emoção é obrigatória */
 
         if (emocoesSelecionadas.length === 0) {
             return;
         }
 
+
         resposta = emocoesSelecionadas.join(", ");
+
 
         const campoDetalhe =
             document.getElementById("detalhe");
 
         if (campoDetalhe) {
-            detalhe = campoDetalhe.value;
+            detalhe = campoDetalhe.value.trim();
         }
 
-        /* Guarda as emoções para o resultado final */
+
+        /* Guardar emoções para o resultado final */
 
         respostas.push(...emocoesSelecionadas);
     }
 
 
-    /* -----------------------------------------
+    /* =========================================================
        OPÇÕES ESPECÍFICAS
-       ----------------------------------------- */
+       ========================================================= */
 
     else if (pergunta.tipo === "opcoes") {
 
         const botaoSelecionado =
-            document.querySelector(".emocoes button.selecionada");
+            document.querySelector(
+                ".emocoes button.selecionada"
+            );
 
         if (!botaoSelecionado) {
             return;
         }
 
-        resposta = botaoSelecionado.innerText.trim();
+        resposta =
+            botaoSelecionado.innerText.trim();
     }
 
 
-    /* -----------------------------------------
+    /* =========================================================
        ESCRITA
-       ----------------------------------------- */
+       ========================================================= */
 
     else if (pergunta.tipo === "escrita") {
 
@@ -686,9 +733,11 @@ function salvarPergunta() {
             return;
         }
 
-        resposta = campo.value.trim();
+        resposta =
+            campo.value.trim();
 
-        /* A pergunta de escrita precisa ter resposta */
+
+        /* Resposta obrigatória */
 
         if (resposta === "") {
             return;
@@ -696,19 +745,25 @@ function salvarPergunta() {
     }
 
 
-    /* -----------------------------------------
-       SALVAR NA PLANILHA
-       ----------------------------------------- */
+    /* =========================================================
+       SALVAR RESPOSTA
+       ========================================================= */
 
-    respostasPerguntas["pergunta" + pergunta.id] = resposta;
-    respostasPerguntas["detalhe" + pergunta.id] = detalhe;
+    respostasPerguntas[
+        "pergunta" + pergunta.id
+    ] = resposta;
+
+    respostasPerguntas[
+        "detalhe" + pergunta.id
+    ] = detalhe;
 
 
-    /* -----------------------------------------
+    /* =========================================================
        AVANÇAR
-       ----------------------------------------- */
+       ========================================================= */
 
     indiceAtual++;
+
 
     if (indiceAtual >= perguntas.length) {
 
@@ -745,10 +800,12 @@ function mostrarResultado() {
 
     let contagem = {};
 
+
     respostas.forEach(function(emocao) {
 
         if (contagem[emocao]) {
             contagem[emocao]++;
+
         } else {
             contagem[emocao] = 1;
         }
@@ -756,12 +813,16 @@ function mostrarResultado() {
     });
 
 
-    let resultado = Object.entries(contagem).sort(function(a, b) {
-        return b[1] - a[1];
-    });
+    let resultado =
+        Object.entries(contagem).sort(
+            function(a, b) {
+                return b[1] - a[1];
+            }
+        );
 
 
-    let topTres = resultado.slice(0, 3);
+    let topTres =
+        resultado.slice(0, 3);
 
     let estatisticasHTML = "";
 
@@ -769,28 +830,42 @@ function mostrarResultado() {
     if (topTres.length === 0) {
 
         estatisticasHTML = `
-            <p>Obrigado por participar do projeto.</p>
+            <p>
+                Obrigado por participar do projeto.
+            </p>
         `;
 
     } else {
 
-        let maiorQuantidade = topTres[0][1];
+        let maiorQuantidade =
+            topTres[0][1];
+
 
         topTres.forEach(function(item) {
 
             let emocao = item[0];
             let quantidade = item[1];
 
+
             let porcentagem =
                 (quantidade / maiorQuantidade) * 100;
+
 
             estatisticasHTML += `
                 <div class="estatistica-item">
 
                     <div class="estatistica-titulo">
-                        <span>${emocao}</span>
-                        <span>${quantidade} vez(es)</span>
+
+                        <span>
+                            ${emocao}
+                        </span>
+
+                        <span>
+                            ${quantidade} vez(es)
+                        </span>
+
                     </div>
+
 
                     <div class="barra-fundo">
 
@@ -808,6 +883,7 @@ function mostrarResultado() {
 
 
     document.body.innerHTML = `
+
         <div class="tela">
 
             <h1>Suas respostas</h1>
@@ -822,5 +898,6 @@ function mostrarResultado() {
             </div>
 
         </div>
+
     `;
 }
