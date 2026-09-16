@@ -4,21 +4,190 @@
     box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
     min-height: 100vh;
-    background-color: #234E70;
+    background-color: #F39A45;
     color: white;
     font-family: 'Nunito', sans-serif;
     text-align: center;
     padding: 15px 12px;
     overflow-x: hidden;
 
-    transition: opacity 0.4s ease;
+    transition:
+        opacity 0.4s ease,
+        background-color 0.4s ease;
 }
 
 
-/* TRANSIÇÃO FADE */
+/* =========================================================
+   CORES DOS TEMAS
+   ========================================================= */
+
+/*
+   1 - ALEGRIA       amarelo
+   2 - TRISTEZA      azul
+   3 - RAIVA         vermelho
+   4 - NOJO          verde
+   5 - MEDO          roxo
+   6 - ANSIEDADE     laranja
+   7 - INVEJA        turquesa
+   8 - VERGONHA      rosa
+   9 - TÉDIO         azul-acinzentado
+   10 - NOSTALGIA    cinza
+*/
+
+
+/* Tela inicial */
+
+body[data-tema="inicial"] {
+    --cor-fundo: #F39A45;
+    --cor-palavras: #B96525;
+    --cor-botao: #F8BC72;
+    --cor-selecionada: #D87528;
+}
+
+
+/* 1 — Alegria */
+
+body[data-tema="0"] {
+    --cor-fundo: #DDBB32;
+    --cor-palavras: #9B8115;
+    --cor-botao: #F0D96B;
+    --cor-selecionada: #B99A18;
+}
+
+
+/* 2 — Tristeza */
+
+body[data-tema="1"] {
+    --cor-fundo: #4C83B5;
+    --cor-palavras: #2D5C86;
+    --cor-botao: #78A8D0;
+    --cor-selecionada: #315F89;
+}
+
+
+/* 3 — Raiva */
+
+body[data-tema="2"] {
+    --cor-fundo: #C94B4B;
+    --cor-palavras: #8D2F2F;
+    --cor-botao: #E47A7A;
+    --cor-selecionada: #A82F2F;
+}
+
+
+/* 4 — Nojo */
+
+body[data-tema="3"] {
+    --cor-fundo: #70A84B;
+    --cor-palavras: #47742D;
+    --cor-botao: #9BC878;
+    --cor-selecionada: #558735;
+}
+
+
+/* 5 — Medo */
+
+body[data-tema="4"] {
+    --cor-fundo: #7656A8;
+    --cor-palavras: #4D3675;
+    --cor-botao: #A487C8;
+    --cor-selecionada: #5B3F87;
+}
+
+
+/* 6 — Ansiedade */
+
+body[data-tema="5"] {
+    --cor-fundo: #E47C3D;
+    --cor-palavras: #A84D22;
+    --cor-botao: #F1A16F;
+    --cor-selecionada: #C45B25;
+}
+
+
+/* 7 — Inveja */
+
+body[data-tema="6"] {
+    --cor-fundo: #45AFA5;
+    --cor-palavras: #28776F;
+    --cor-botao: #78C9C1;
+    --cor-selecionada: #328E86;
+}
+
+
+/* 8 — Vergonha */
+
+body[data-tema="7"] {
+    --cor-fundo: #D7799A;
+    --cor-palavras: #994C6A;
+    --cor-botao: #E9A6BB;
+    --cor-selecionada: #B85B7D;
+}
+
+
+/* 9 — Tédio */
+
+body[data-tema="8"] {
+    --cor-fundo: #66758B;
+    --cor-palavras: #424E60;
+    --cor-botao: #8F9CAD;
+    --cor-selecionada: #505D70;
+}
+
+
+/* 10 — Nostalgia */
+
+body[data-tema="9"] {
+    --cor-fundo: #8C8983;
+    --cor-palavras: #5D5A56;
+    --cor-botao: #B3B0AA;
+    --cor-selecionada: #706D68;
+}
+
+
+/* Resultado */
+
+body[data-tema="resultado"] {
+    --cor-fundo: #234E70;
+    --cor-palavras: #1B3F5A;
+    --cor-botao: #6BB6E8;
+    --cor-selecionada: #1565C0;
+}
+
+
+/* =========================================================
+   APLICAÇÃO DAS CORES
+   ========================================================= */
+
+body {
+    background-color: var(--cor-fundo);
+}
+
+button {
+    background-color: var(--cor-botao);
+}
+
+.fundo-emocoes span {
+    color: var(--cor-palavras);
+}
+
+.emocoes button.selecionada {
+    background-color: var(--cor-selecionada);
+}
+
+
+/* =========================================================
+   TRANSIÇÃO FADE
+   ========================================================= */
 
 body.fade-out {
     opacity: 0;
@@ -29,27 +198,38 @@ body.fade-in {
 }
 
 
-/* Fundo com palavras */
+/* =========================================================
+   FUNDO COM PALAVRAS
+   ========================================================= */
 
 .fundo-emocoes {
     position: fixed;
     inset: 0;
+    width: 100vw;
+    height: 100vh;
+
     overflow: hidden;
     pointer-events: none;
-    z-index: -1;
+
+    z-index: 0;
 }
 
 .fundo-emocoes span {
     position: absolute;
+
     font-family: 'Fredoka', sans-serif;
     font-weight: 600;
-    color: #1B3F5A;
-    opacity: 0.7;
+
+    opacity: 0.72;
     white-space: nowrap;
+
+    user-select: none;
 }
 
 
-/* Tamanhos diferentes */
+/* =========================================================
+   TAMANHOS
+   ========================================================= */
 
 .fundo-emocoes .grande {
     font-size: 48px;
@@ -64,7 +244,9 @@ body.fade-in {
 }
 
 
-/* Direções */
+/* =========================================================
+   DIREÇÕES
+   ========================================================= */
 
 .fundo-emocoes .vertical {
     writing-mode: vertical-rl;
@@ -79,18 +261,31 @@ body.fade-in {
 }
 
 
-/* Conteúdo da tela */
+/* =========================================================
+   CONTEÚDO
+   ========================================================= */
 
 .tela {
     position: relative;
+
     z-index: 1;
+
     width: 100%;
     max-width: 600px;
+
     margin: 0 auto;
+
+    min-height: calc(100vh - 30px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
-/* Títulos */
+/* =========================================================
+   TÍTULOS
+   ========================================================= */
 
 h1,
 h2 {
@@ -100,99 +295,146 @@ h2 {
 h1 {
     font-size: 26px;
     line-height: 1.2;
+
     margin: 10px auto 14px;
+
     max-width: 600px;
 }
 
 h2 {
     font-size: 21px;
+
     margin: 15px auto;
+
     max-width: 600px;
 }
 
 p {
     font-size: 16px;
     line-height: 1.4;
+
     max-width: 600px;
+
     margin: 10px auto;
 }
 
 
-/* Botões gerais */
+/* =========================================================
+   BOTÕES
+   ========================================================= */
 
 button {
-    background-color: #6BB6E8;
     color: white;
+
     border: 3px solid transparent;
     border-radius: 15px;
+
     padding: 15px 18px;
+
     font-family: 'Nunito', sans-serif;
     font-size: 16px;
     font-weight: 600;
+
     margin: 6px;
+
     cursor: pointer;
+
     min-height: 50px;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
 }
 
 button:hover {
     transform: scale(1.02);
 }
 
+button:active {
+    transform: scale(0.98);
+}
 
-/* Emoções */
+
+/* =========================================================
+   EMOÇÕES
+   ========================================================= */
 
 .emocoes {
     display: grid;
+
     grid-template-columns: repeat(2, 1fr);
+
     gap: 8px;
+
     width: 100%;
     max-width: 500px;
+
     margin: 14px auto;
 }
 
 .emocoes button {
     width: 100%;
+
     margin: 0;
+
     min-height: 52px;
+
     padding: 10px 8px;
 }
 
 
-/* Emoção selecionada */
+/* =========================================================
+   EMOÇÃO SELECIONADA
+   ========================================================= */
 
 .emocoes button.selecionada {
-    background-color: #1565C0;
     border: 3px solid white;
+
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.15);
 }
 
 
-/* Campo de texto */
+/* =========================================================
+   CAMPO DE TEXTO
+   ========================================================= */
 
 input,
 textarea {
     width: 100%;
     max-width: 500px;
+
     border: none;
     border-radius: 15px;
+
     padding: 15px;
+
     font-family: 'Nunito', sans-serif;
     font-size: 16px;
+
     margin-top: 10px;
+
+    outline: none;
 }
 
 textarea {
     min-height: 90px;
+
     resize: none;
 }
 
 
-/* Estatística do resultado */
+/* =========================================================
+   ESTATÍSTICA
+   ========================================================= */
 
 .estatistica {
     width: 100%;
     max-width: 500px;
+
     margin: 25px auto;
+
     text-align: left;
 }
 
@@ -202,34 +444,49 @@ textarea {
 
 .estatistica-titulo {
     display: flex;
+
     justify-content: space-between;
+
     font-size: 17px;
     font-weight: 700;
+
     margin-bottom: 8px;
 }
 
 .barra-fundo {
     width: 100%;
     height: 18px;
+
     background-color: rgba(255, 255, 255, 0.25);
+
     border-radius: 20px;
+
     overflow: hidden;
 }
 
 .barra {
     height: 100%;
-    background-color: #6BB6E8;
+
+    background-color: var(--cor-botao);
+
     border-radius: 20px;
+
     transition: width 0.5s;
 }
 
 
-/* Ajustes para telas pequenas */
+/* =========================================================
+   CELULARES
+   ========================================================= */
 
 @media (max-width: 400px) {
 
     body {
         padding: 12px 10px;
+    }
+
+    .tela {
+        min-height: calc(100vh - 24px);
     }
 
     h1 {
@@ -246,12 +503,15 @@ textarea {
 
     .emocoes {
         gap: 7px;
+
         margin: 12px auto;
     }
 
     .emocoes button {
         font-size: 15px;
+
         padding: 10px 7px;
+
         min-height: 50px;
     }
 
@@ -262,8 +522,6 @@ textarea {
     .estatistica-titulo {
         font-size: 15px;
     }
-
-    /* Palavras menores em celulares */
 
     .fundo-emocoes .grande {
         font-size: 38px;
