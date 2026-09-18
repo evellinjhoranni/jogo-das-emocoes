@@ -51,6 +51,10 @@ body[data-tema="inicial"] {
     --cor-palavras: #B96525;
     --cor-botao: #F8BC72;
     --cor-selecionada: #D87528;
+     background-image: url("Imagem inicial.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
