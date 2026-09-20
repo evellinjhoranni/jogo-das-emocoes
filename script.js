@@ -1,16 +1,16 @@
+const SUPABASE_URL = "https://kbwdrelckzsdfasslkwk.supabase.co";
+const SUPABASE_KEY = "sb_publishable_hsJRPeP6OQAPc8nnp_G_VQ_1LKVffjt";
+
 let respostas = [];
 
 let respostasPerguntas = {};
 
 let indiceAtual = 0;
 
-const URL_PLANILHA =
-    "https://script.google.com/macros/s/AKfycbzIB2B0QBHPiVmK3ByK55UmWOyGw0oTRiIIY2LBQCyAA_xUOTXerbIUjXKaV_k3Zksl/exec";
-
 
 /* =========================================================
    PERGUNTAS
-   ========================================================= */
+========================================================= */
 
 const perguntas = [
 
@@ -181,12 +181,13 @@ const perguntas = [
             "Ansioso(a)"
         ]
     }
+
 ];
 
 
 /* =========================================================
    OPÇÕES ESPECÍFICAS
-   ========================================================= */
+========================================================= */
 
 const opcoesEspecificas = [
     "Sim",
@@ -200,12 +201,14 @@ const opcoesEspecificas = [
 
 /* =========================================================
    INICIAR JOGO
-   ========================================================= */
+========================================================= */
 
 function iniciarJogo() {
 
     indiceAtual = 0;
+
     respostas = [];
+
     respostasPerguntas = {};
 
     trocarTela(mostrarProximaPergunta);
@@ -214,7 +217,7 @@ function iniciarJogo() {
 
 /* =========================================================
    TRANSIÇÃO
-   ========================================================= */
+========================================================= */
 
 function trocarTela(proximaTela) {
 
@@ -225,10 +228,13 @@ function trocarTela(proximaTela) {
         proximaTela();
 
         document.body.classList.remove("fade-out");
+
         document.body.classList.add("fade-in");
 
         setTimeout(function() {
+
             document.body.classList.remove("fade-in");
+
         }, 400);
 
     }, 400);
@@ -237,13 +243,14 @@ function trocarTela(proximaTela) {
 
 /* =========================================================
    MOSTRAR PRÓXIMA PERGUNTA
-   ========================================================= */
+========================================================= */
 
 function mostrarProximaPergunta() {
 
     if (indiceAtual >= perguntas.length) {
-        enviarParaPlanilha();
+
         mostrarResultado();
+
         return;
     }
 
@@ -257,9 +264,9 @@ function mostrarProximaPergunta() {
     let conteudo = "";
 
 
-    /* =========================================================
+    /* =====================================================
        PERGUNTA DE EMOÇÕES
-       ========================================================= */
+    ===================================================== */
 
     if (pergunta.tipo === "emocao") {
 
@@ -267,6 +274,7 @@ function mostrarProximaPergunta() {
             <div class="emocoes">
 
                 ${pergunta.emocao.map(function(emocao) {
+
                     return `
                         <button
                             type="button"
@@ -275,6 +283,7 @@ function mostrarProximaPergunta() {
                             ${emocao}
                         </button>
                     `;
+
                 }).join("")}
 
             </div>
@@ -287,9 +296,9 @@ function mostrarProximaPergunta() {
     }
 
 
-    /* =========================================================
-       PERGUNTA COM SIM / NÃO
-       ========================================================= */
+    /* =====================================================
+       PERGUNTA COM OPÇÕES
+    ===================================================== */
 
     else if (pergunta.tipo === "opcoes") {
 
@@ -297,6 +306,7 @@ function mostrarProximaPergunta() {
             <div class="emocoes">
 
                 ${opcoesEspecificas.map(function(opcao) {
+
                     return `
                         <button
                             type="button"
@@ -305,6 +315,7 @@ function mostrarProximaPergunta() {
                             ${opcao}
                         </button>
                     `;
+
                 }).join("")}
 
             </div>
@@ -312,9 +323,9 @@ function mostrarProximaPergunta() {
     }
 
 
-    /* =========================================================
+    /* =====================================================
        PERGUNTA DE ESCREVER
-       ========================================================= */
+    ===================================================== */
 
     else if (pergunta.tipo === "escrita") {
 
@@ -329,11 +340,12 @@ function mostrarProximaPergunta() {
     }
 
 
-    /* =========================================================
+    /* =====================================================
        MONTAR TELA DA PERGUNTA
-       ========================================================= */
+    ===================================================== */
 
     document.body.innerHTML = `
+
         <div class="tela">
 
             <h1>${pergunta.texto}</h1>
@@ -350,13 +362,14 @@ function mostrarProximaPergunta() {
             </button>
 
         </div>
+
     `;
 }
 
 
 /* =========================================================
    SELECIONAR EMOÇÃO
-   ========================================================= */
+========================================================= */
 
 function selecionarEmocao(botao) {
 
@@ -366,7 +379,7 @@ function selecionarEmocao(botao) {
 
 /* =========================================================
    SELECIONAR OPÇÃO ESPECÍFICA
-   ========================================================= */
+========================================================= */
 
 function selecionarOpcao(botao) {
 
@@ -374,7 +387,9 @@ function selecionarOpcao(botao) {
         document.querySelectorAll(".emocoes button");
 
     botoes.forEach(function(item) {
+
         item.classList.remove("selecionada");
+
     });
 
     botao.classList.add("selecionada");
@@ -383,19 +398,20 @@ function selecionarOpcao(botao) {
 
 /* =========================================================
    SALVAR PERGUNTA ATUAL
-   ========================================================= */
+========================================================= */
 
-function salvarPergunta() {
+async function salvarPergunta() {
 
     const pergunta = perguntas[indiceAtual];
 
     let resposta = "";
+
     let detalhe = "";
 
 
-    /* =========================================================
+    /* =====================================================
        EMOÇÕES
-       ========================================================= */
+    ===================================================== */
 
     if (pergunta.tipo === "emocao") {
 
@@ -418,30 +434,37 @@ function salvarPergunta() {
         /* Pelo menos uma emoção é obrigatória */
 
         if (emocoesSelecionadas.length === 0) {
+
             return;
         }
 
 
-        resposta = emocoesSelecionadas.join(", ");
+        resposta =
+            emocoesSelecionadas.join(", ");
 
 
         const campoDetalhe =
             document.getElementById("detalhe");
 
+
         if (campoDetalhe) {
-            detalhe = campoDetalhe.value.trim();
+
+            detalhe =
+                campoDetalhe.value.trim();
         }
 
 
         /* Guardar emoções para o resultado final */
 
-        respostas.push(...emocoesSelecionadas);
+        respostas.push(
+            ...emocoesSelecionadas
+        );
     }
 
 
-    /* =========================================================
+    /* =====================================================
        OPÇÕES ESPECÍFICAS
-       ========================================================= */
+    ===================================================== */
 
     else if (pergunta.tipo === "opcoes") {
 
@@ -450,27 +473,35 @@ function salvarPergunta() {
                 ".emocoes button.selecionada"
             );
 
+
         if (!botaoSelecionado) {
+
             return;
         }
+
 
         resposta =
             botaoSelecionado.innerText.trim();
     }
 
 
-    /* =========================================================
+    /* =====================================================
        ESCRITA
-       ========================================================= */
+    ===================================================== */
 
     else if (pergunta.tipo === "escrita") {
 
         const campo =
-            document.getElementById("respostaEscrita");
+            document.getElementById(
+                "respostaEscrita"
+            );
+
 
         if (!campo) {
+
             return;
         }
+
 
         resposta =
             campo.value.trim();
@@ -479,61 +510,148 @@ function salvarPergunta() {
         /* Resposta obrigatória */
 
         if (resposta === "") {
+
             return;
         }
     }
 
 
-    /* =========================================================
+    /* =====================================================
        SALVAR RESPOSTA
-       ========================================================= */
+    ===================================================== */
 
     respostasPerguntas[
         "pergunta" + pergunta.id
     ] = resposta;
+
 
     respostasPerguntas[
         "detalhe" + pergunta.id
     ] = detalhe;
 
 
-    /* =========================================================
-       AVANÇAR
-       ========================================================= */
+    /* =====================================================
+       FINALIZAR E ENVIAR PARA O SUPABASE
+    ===================================================== */
 
-    indiceAtual++;
+    if (indiceAtual === perguntas.length - 1) {
 
+        await salvarNoSupabase();
 
-    if (indiceAtual >= perguntas.length) {
-
-        enviarParaPlanilha();
+        indiceAtual++;
 
         trocarTela(mostrarResultado);
 
-    } else {
-
-        trocarTela(mostrarProximaPergunta);
+        return;
     }
+
+
+    /* =====================================================
+       AVANÇAR PARA A PRÓXIMA
+    ===================================================== */
+
+    indiceAtual++;
+
+    trocarTela(mostrarProximaPergunta);
 }
 
 
 /* =========================================================
-   ENVIAR PARA A PLANILHA
-   ========================================================= */
+   SALVAR TUDO NO SUPABASE
+========================================================= */
 
-function enviarParaPlanilha() {
+async function salvarNoSupabase() {
 
-    fetch(URL_PLANILHA, {
-        method: "POST",
-        body: JSON.stringify(respostasPerguntas)
-    })
-    .catch(function() {});
+    const participanteResponse =
+        await fetch(
+            `${SUPABASE_URL}/rest/v1/participantes`,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": `Bearer ${SUPABASE_KEY}`,
+                    "Prefer": "return=representation"
+                },
+
+                body: JSON.stringify({})
+            }
+        );
+
+
+    if (!participanteResponse.ok) {
+
+        return;
+    }
+
+
+    const participante =
+        await participanteResponse.json();
+
+
+    if (
+        !participante ||
+        participante.length === 0
+    ) {
+
+        return;
+    }
+
+
+    const participanteId =
+        participante[0].id;
+
+
+    const respostasParaEnviar =
+        perguntas.map(function(pergunta) {
+
+            return {
+
+                participante_id:
+                    participanteId,
+
+                pergunta_id:
+                    pergunta.id,
+
+                resposta:
+                    respostasPerguntas[
+                        "pergunta" + pergunta.id
+                    ] || "",
+
+                detalhe:
+                    respostasPerguntas[
+                        "detalhe" + pergunta.id
+                    ] || ""
+
+            };
+
+        });
+
+
+    await fetch(
+        `${SUPABASE_URL}/rest/v1/respostas`,
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json",
+                "apikey": SUPABASE_KEY,
+                "Authorization": `Bearer ${SUPABASE_KEY}`
+            },
+
+            body:
+                JSON.stringify(
+                    respostasParaEnviar
+                )
+        }
+    );
 }
 
 
 /* =========================================================
    MOSTRAR RESULTADO
-   ========================================================= */
+========================================================= */
 
 function mostrarResultado() {
 
@@ -543,9 +661,11 @@ function mostrarResultado() {
     respostas.forEach(function(emocao) {
 
         if (contagem[emocao]) {
+
             contagem[emocao]++;
 
         } else {
+
             contagem[emocao] = 1;
         }
 
@@ -555,13 +675,16 @@ function mostrarResultado() {
     let resultado =
         Object.entries(contagem).sort(
             function(a, b) {
+
                 return b[1] - a[1];
+
             }
         );
 
 
     let topTres =
         resultado.slice(0, 3);
+
 
     let estatisticasHTML = "";
 
@@ -582,8 +705,11 @@ function mostrarResultado() {
 
         topTres.forEach(function(item) {
 
-            let emocao = item[0];
-            let quantidade = item[1];
+            let emocao =
+                item[0];
+
+            let quantidade =
+                item[1];
 
 
             let porcentagem =
@@ -591,6 +717,7 @@ function mostrarResultado() {
 
 
             estatisticasHTML += `
+
                 <div class="estatistica-item">
 
                     <div class="estatistica-titulo">
@@ -616,6 +743,7 @@ function mostrarResultado() {
                     </div>
 
                 </div>
+
             `;
         });
     }
@@ -633,7 +761,9 @@ function mostrarResultado() {
             </p>
 
             <div class="estatistica">
+
                 ${estatisticasHTML}
+
             </div>
 
         </div>
