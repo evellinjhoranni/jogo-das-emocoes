@@ -579,10 +579,14 @@ async function salvarNoSupabase() {
         );
 
 
-    if (!participanteResponse.ok) {
+   if (!participanteResponse.ok) {
 
-        return;
-    }
+    const erro = await participanteResponse.text();
+
+    alert("Erro ao salvar: " + erro);
+
+    return;
+}
 
 
     const participante =
