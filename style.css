@@ -51,7 +51,7 @@ body[data-tema="inicial"] {
     --cor-palavras: #B96525;
     --cor-botao: #F8BC72;
     --cor-selecionada: #D87528;
-     background-image: url("Imagem inicial.png");
+    --imagem-fundo: url("Imagem inicial.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -65,6 +65,10 @@ body[data-tema="0"] {
     --cor-palavras: #9B8115;
     --cor-botao: #F0D96B;
     --cor-selecionada: #B99A18;
+    --imagem-fundo: url("Imagem\ alegria.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
@@ -75,26 +79,10 @@ body[data-tema="1"] {
     --cor-palavras: #2D5C86;
     --cor-botao: #78A8D0;
     --cor-selecionada: #315F89;
-}
-
-
-/* 3 — Raiva */
-
-body[data-tema="2"] {
-    --cor-fundo: #C94B4B;
-    --cor-palavras: #8D2F2F;
-    --cor-botao: #E47A7A;
-    --cor-selecionada: #A82F2F;
-}
-
-
-/* 4 — Nojo */
-
-body[data-tema="3"] {
-    --cor-fundo: #70A84B;
-    --cor-palavras: #47742D;
-    --cor-botao: #9BC878;
-    --cor-selecionada: #558735;
+    --imagem-fundo: url("Imagem\ tristeza.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
@@ -105,6 +93,38 @@ body[data-tema="4"] {
     --cor-palavras: #4D3675;
     --cor-botao: #A487C8;
     --cor-selecionada: #5B3F87;
+    --imagem-fundo: url("Imagem\ medo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* 4 — Nojo */
+
+body[data-tema="3"] {
+    --cor-fundo: #70A84B;
+    --cor-palavras: #47742D;
+    --cor-botao: #9BC878;
+    --cor-selecionada: #558735;
+    --imagem-fundo: url("Imagem\ nojo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* 3 — Raiva */
+
+body[data-tema="2"] {
+    --cor-fundo: #C94B4B;
+    --cor-palavras: #8D2F2F;
+    --cor-botao: #E47A7A;
+    --cor-selecionada: #A82F2F;
+    --imagem-fundo: url("Imagem\ raiva.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
@@ -115,6 +135,10 @@ body[data-tema="5"] {
     --cor-palavras: #A84D22;
     --cor-botao: #F1A16F;
     --cor-selecionada: #C45B25;
+    --imagem-fundo: url("Imagem\ ansiedade.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
@@ -125,16 +149,10 @@ body[data-tema="6"] {
     --cor-palavras: #28776F;
     --cor-botao: #78C9C1;
     --cor-selecionada: #328E86;
-}
-
-
-/* 8 — Vergonha */
-
-body[data-tema="7"] {
-    --cor-fundo: #D7799A;
-    --cor-palavras: #994C6A;
-    --cor-botao: #E9A6BB;
-    --cor-selecionada: #B85B7D;
+    --imagem-fundo: url("Imagem\ inveja.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
@@ -145,6 +163,24 @@ body[data-tema="8"] {
     --cor-palavras: #424E60;
     --cor-botao: #8F9CAD;
     --cor-selecionada: #505D70;
+    --imagem-fundo: url("Imagem\ tédio.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* 8 — Vergonha */
+
+body[data-tema="7"] {
+    --cor-fundo: #D7799A;
+    --cor-palavras: #994C6A;
+    --cor-botao: #E9A6BB;
+    --cor-selecionada: #B85B7D;
+    --imagem-fundo: url("Imagem\ vergonha.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
@@ -155,6 +191,10 @@ body[data-tema="9"] {
     --cor-palavras: #5D5A56;
     --cor-botao: #B3B0AA;
     --cor-selecionada: #706D68;
+    --imagem-fundo: url("Imagem\ nostalgia.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
@@ -174,6 +214,24 @@ body[data-tema="resultado"] {
 
 body {
     background-color: var(--cor-fundo);
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background-image: var(--imagem-fundo);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -1;
+
+    opacity: 1;
+
+    transition: opacity 0.6s ease;
 }
 
 button {
@@ -201,68 +259,6 @@ body.fade-in {
     opacity: 1;
 }
 
-
-/* =========================================================
-   FUNDO COM PALAVRAS
-   ========================================================= */
-
-.fundo-emocoes {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-
-    overflow: hidden;
-    pointer-events: none;
-
-    z-index: 0;
-}
-
-.fundo-emocoes span {
-    position: absolute;
-
-    font-family: 'Fredoka', sans-serif;
-    font-weight: 600;
-
-    opacity: 0.72;
-    white-space: nowrap;
-
-    user-select: none;
-}
-
-
-/* =========================================================
-   TAMANHOS
-   ========================================================= */
-
-.fundo-emocoes .grande {
-    font-size: 48px;
-}
-
-.fundo-emocoes .media {
-    font-size: 32px;
-}
-
-.fundo-emocoes .pequena {
-    font-size: 20px;
-}
-
-
-/* =========================================================
-   DIREÇÕES
-   ========================================================= */
-
-.fundo-emocoes .vertical {
-    writing-mode: vertical-rl;
-}
-
-.fundo-emocoes .inclinada-direita {
-    transform: rotate(15deg);
-}
-
-.fundo-emocoes .inclinada-esquerda {
-    transform: rotate(-15deg);
-}
 
 
 /* =========================================================
@@ -409,7 +405,7 @@ button:active {
 input,
 textarea {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
 
     border: none;
     border-radius: 15px;
@@ -419,9 +415,10 @@ textarea {
     font-family: 'Nunito', sans-serif;
     font-size: 16px;
 
-    margin-top: 10px;
+    margin-top: 10px auto 0;
 
     outline: none;
+    align-self: center;
 }
 
 textarea {
@@ -539,5 +536,53 @@ textarea {
 
     .fundo-emocoes .pequena {
         font-size: 17px;
+    }
+}
+
+/* =========================================================
+   NOTEBOOK / DESKTOP
+   ========================================================= */
+
+@media (min-width: 768px) {
+
+    .tela {
+        max-width: 720px;
+    }
+
+    h1 {
+        font-size: 38px;
+        max-width: 700px;
+    }
+
+    h2 {
+        font-size: 23px;
+        max-width: 700px;
+    }
+
+    p {
+        max-width: 600px;
+    }
+
+    .emocoes {
+        max-width: 600px;
+        gap: 10px;
+    }
+
+    .emocoes button {
+        min-height: 56px;
+        font-size: 17px;
+    }
+
+    input,
+    textarea {
+        max-width: 600px;
+    }
+
+    textarea {
+        min-height: 100px;
+    }
+
+    .tela > button {
+        min-width: 600px;
     }
 }
