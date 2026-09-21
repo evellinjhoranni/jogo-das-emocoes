@@ -133,7 +133,14 @@
             <h2>Participantes</h2>
 
             <div id="lista-participantes">
-                Carregando...
+
+                <button
+                    class="participante"
+                    onclick="abrirListaParticipantes()"
+                >
+                    Participantes
+                </button>
+
             </div>
 
         </div>
@@ -148,26 +155,28 @@ const SUPABASE_URL = "https://kbwdrelckzsdfasslkwk.supabase.co";
 const SUPABASE_KEY = "sb_publishable_hsJRPeP6OQAPc8nnp_G_VQ_1LKVffjt";
 
 
-async function carregarParticipantes() {
+async function carregarTotalParticipantes() {
 
-    const response = await fetch(
-        `${SUPABASE_URL}/rest/v1/participantes?select=id,created_at&order=created_at.asc`,
-        {
-            headers: {
-                "apikey": SUPABASE_KEY
+    const response =
+        await fetch(
+            `${SUPABASE_URL}/rest/v1/participantes?select=id,created_at&order=created_at.asc`,
+            {
+                headers: {
+                    "apikey": SUPABASE_KEY
+                }
             }
-        }
-    );
+        );
 
 
     if (!response.ok) {
 
         document.getElementById(
-            "lista-participantes"
+            "total-participantes"
         ).textContent =
-            "Erro ao carregar participantes.";
+            "Erro ao carregar.";
 
         return;
+
     }
 
 
@@ -179,6 +188,60 @@ async function carregarParticipantes() {
         "total-participantes"
     ).textContent =
         participantes.length;
+
+}
+
+
+async function abrirListaParticipantes() {
+
+    const container =
+        document.querySelector(
+            ".container"
+        );
+
+
+    container.innerHTML = `
+
+        <h1>
+            Participantes
+        </h1>
+
+        <div class="card">
+
+            <div id="lista-participantes">
+                Carregando...
+            </div>
+
+        </div>
+
+    `;
+
+
+    const response =
+        await fetch(
+            `${SUPABASE_URL}/rest/v1/participantes?select=id,created_at&order=created_at.asc`,
+            {
+                headers: {
+                    "apikey": SUPABASE_KEY
+                }
+            }
+        );
+
+
+    if (!response.ok) {
+
+        document.getElementById(
+            "lista-participantes"
+        ).textContent =
+            "Erro ao carregar participantes.";
+
+        return;
+
+    }
+
+
+    const participantes =
+        await response.json();
 
 
     const lista =
@@ -248,6 +311,7 @@ async function abrirPerfil(
         );
 
         return;
+
     }
 
 
@@ -317,10 +381,9 @@ async function abrirPerfil(
 }
 
 
-carregarParticipantes();
+carregarTotalParticipantes();
 
 </script>
-
 
 </body>
 
