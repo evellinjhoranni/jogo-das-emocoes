@@ -562,57 +562,10 @@ async function salvarPergunta() {
 
 async function salvarNoSupabase() {
 
-    const participanteResponse =
-        await fetch(
-            `${SUPABASE_URL}/rest/v1/participantes`,
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json",
-                    "apikey": SUPABASE_KEY,
-                    "Prefer": "return=representation"
-                },
-
-                body: JSON.stringify({})
-            }
-        );
-
-
-   if (!participanteResponse.ok) {
-
-    const erro = await participanteResponse.text();
-
-    alert("Erro ao salvar: " + erro);
-
-    return;
-}
-
-
-    const participante =
-        await participanteResponse.json();
-
-
-    if (
-        !participante ||
-        participante.length === 0
-    ) {
-
-        return;
-    }
-
-
-    const participanteId =
-        participante[0].id;
-
-
     const respostasParaEnviar =
         perguntas.map(function(pergunta) {
 
             return {
-
-                participante_id:
-                    participanteId,
 
                 pergunta_id:
                     pergunta.id,
@@ -632,22 +585,35 @@ async function salvarNoSupabase() {
         });
 
 
-    await fetch(
-        `${SUPABASE_URL}/rest/v1/respostas`,
-        {
-            method: "POST",
+    const response =
+        await fetch(
+            `${SUPABASE_URL}/rest/v1/rpc/salvar_participante`,
+            {
+                method: "POST",
 
-            headers: {
-                "Content-Type": "application/json",
-                "apikey": SUPABASE_KEY,
-            },
+                headers: {
+                    "Content-Type": "application/json",
+                    "apikey": SUPABASE_KEY
+                },
 
-            body:
-                JSON.stringify(
-                    respostasParaEnviar
-                )
-        }
-    );
+                body: JSON.stringify({
+                    p_respostas:
+                        respostasParaEnviar
+                })
+            }
+        );
+
+
+    if (!response.ok) {
+
+        const erro =
+            await response.text();
+
+        alert("Erro ao salvar: " + erro);
+
+        return;
+    }
+
 }
 
 
