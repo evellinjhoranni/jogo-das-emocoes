@@ -126,4 +126,55 @@
 
 </body>
 
+    <script>
+
+const SUPABASE_URL = "https://kbwdrelckzsdfasslkwk.supabase.co";
+const SUPABASE_KEY = "sb_publishable_hsJRPeP6OQAPc8nnp_G_VQ_1LKVffjt";
+
+async function carregarParticipantes() {
+
+    const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/participantes?select=id,created_at&order=created_at.asc`,
+        {
+            headers: {
+                "apikey": SUPABASE_KEY
+            }
+        }
+    );
+
+    if (!response.ok) {
+        document.getElementById("lista-participantes").textContent =
+            "Erro ao carregar participantes.";
+        return;
+    }
+
+    const participantes = await response.json();
+
+    document.getElementById("total-participantes").textContent =
+        participantes.length;
+
+    const lista =
+        document.getElementById("lista-participantes");
+
+    lista.innerHTML = "";
+
+    participantes.forEach(function(participante, indice) {
+
+        const botao = document.createElement("button");
+
+        botao.className = "participante";
+
+        botao.textContent =
+            "Participante " + (indice + 1);
+
+        lista.appendChild(botao);
+
+    });
+
+}
+
+carregarParticipantes();
+
+</script>
+
 </html>
