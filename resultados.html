@@ -488,6 +488,148 @@ function calcularEstatisticaIndividual(respostas) {
 
 }
 
+    async function calcularEstatisticaGeral() {
+
+    const response =
+        await fetch(
+            `${SUPABASE_URL}/rest/v1/respostas?select=pergunta_id,resposta`,
+            {
+                headers: {
+                    "apikey": SUPABASE_KEY
+                }
+            }
+        );
+
+
+    if (!response.ok) {
+
+        document.getElementById(
+            "estatistica-geral"
+        ).textContent =
+            "Erro ao carregar.";
+
+        return;
+
+    }
+
+
+    const respostas =
+        await response.json();
+
+
+    const perguntasDeEmocao = [
+        1,
+        3,
+        6,
+        7,
+        9,
+        20
+    ];
+
+
+    const contagem = {};
+
+
+    respostas.forEach(
+        function(resposta) {
+
+            if (
+                !perguntasDeEmocao.includes(
+                    Number(resposta.pergunta_id)
+                )
+            ) {
+                return;
+            }
+
+
+            const texto =
+                resposta.resposta || "";
+
+
+            const emocoes =
+                texto.split(",");
+
+
+            emocoes.forEach(
+                function(emocao) {
+
+                    const nome =
+                        emocao.trim();
+
+
+                    if (!nome) {
+                        return;
+                    }
+
+
+                    contagem[nome] =
+                        (contagem[nome] || 0) + 1;
+
+                }
+            );
+
+        }
+    );
+
+
+    const totalEscolhas =
+        Object.values(contagem)
+            .reduce(
+                function(total, quantidade) {
+                    return total + quantidade;
+                },
+                0
+            );
+
+
+    if (totalEscolhas === 0) {
+
+        document.getElementById(
+            "estatistica-geral"
+        ).textContent =
+            "Nenhuma emoção registrada.";
+
+        return;
+
+    }
+
+
+    const ranking =
+        Object.entries(contagem)
+            .sort(
+                function(a, b) {
+                    return b[1] - a[1];
+                }
+            )
+            .slice(0, 3);
+
+
+    const resultado =
+        ranking.map(
+            function(item) {
+
+                const porcentagem =
+                    Math.round(
+                        (item[1] / totalEscolhas) * 100
+                    );
+
+
+                return (
+                    porcentagem +
+                    "% " +
+                    item[0]
+                );
+
+            }
+        );
+
+
+    document.getElementById(
+        "estatistica-geral"
+    ).innerHTML =
+        resultado.join("<br>");
+
+}
 
 async function abrirPerfil(
     participanteId,
@@ -634,6 +776,7 @@ async function abrirPerfil(
 
 
 carregarTotalParticipantes();
+calcularEstatisticaGeral();
 
 </script>
 
