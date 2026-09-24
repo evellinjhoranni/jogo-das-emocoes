@@ -488,7 +488,8 @@ function calcularEstatisticaIndividual(respostas) {
 
 }
 
-    async function calcularEstatisticaGeral() {
+
+async function calcularEstatisticaGeral() {
 
     const response =
         await fetch(
@@ -631,6 +632,7 @@ function calcularEstatisticaIndividual(respostas) {
 
 }
 
+
 async function abrirPerfil(
     participanteId,
     numeroParticipante,
@@ -639,10 +641,12 @@ async function abrirPerfil(
 
     const response =
         await fetch(
-            `${SUPABASE_URL}/rest/v1/respostas?select=*&participante_id=eq.${participanteId}&order=pergunta_id.asc`,
+            `${SUPABASE_URL}/rest/v1/respostas?select=id,participante_id,pergunta_id,resposta,detalhe,created_at&participante_id=eq.${participanteId}`,
             {
+                method: "GET",
                 headers: {
-                    "apikey": SUPABASE_KEY
+                    "apikey": SUPABASE_KEY,
+                    "Accept": "application/json"
                 }
             }
         );
@@ -650,8 +654,11 @@ async function abrirPerfil(
 
     if (!response.ok) {
 
+        const erro =
+            await response.text();
+
         alert(
-            "Erro ao carregar as respostas."
+            "Erro ao carregar as respostas: " + erro
         );
 
         return;
@@ -691,7 +698,6 @@ async function abrirPerfil(
                 ${formatarDataHora(dataHora)}
             </p>
 
-
             <div class="titulo-estatistica">
                 ESTATÍSTICA INDIVIDUAL
             </div>
@@ -702,10 +708,8 @@ async function abrirPerfil(
 
         </div>
 
-
         <div id="respostas-participante">
         </div>
-
 
         <button
             class="botao-voltar"
@@ -721,6 +725,18 @@ async function abrirPerfil(
         document.getElementById(
             "respostas-participante"
         );
+
+
+    if (respostas.length === 0) {
+
+        area.innerHTML = `
+            <div class="caixa-resposta">
+                <p>Nenhuma resposta encontrada.</p>
+            </div>
+        `;
+
+        return;
+    }
 
 
     respostas.forEach(
