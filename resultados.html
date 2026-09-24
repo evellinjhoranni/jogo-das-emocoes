@@ -147,6 +147,7 @@
             border-radius: 20px;
             padding: 22px;
             margin-bottom: 18px;
+            text-align: left !important;
         }
 
         .caixa-resposta strong {
@@ -155,10 +156,14 @@
             font-family: 'Fredoka', sans-serif;
             font-size: 21px;
             margin-bottom: 10px;
+            text-align: left !important;
         }
 
-        .caixa-resposta p {
+        .texto-resposta {
+            display: block;
+            width: 100%;
             margin: 0;
+            padding: 0;
             color: black;
             font-family: 'Nunito', sans-serif;
             font-size: 16px;
@@ -166,6 +171,7 @@
             line-height: 1.5;
             white-space: pre-wrap;
             word-wrap: break-word;
+            overflow-wrap: break-word;
             text-align: left !important;
         }
 
@@ -769,9 +775,9 @@ async function abrirPerfil(
                     RESPOSTA ${indice + 1}
                 </strong>
 
-                <p>
+                <div class="texto-resposta">
                     ${escaparHTML(textoCompleto)}
-                </p>
+                </div>
 
             `;
 
