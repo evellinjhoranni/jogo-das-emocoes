@@ -293,13 +293,12 @@ h2 {
 }
 
 h1 {
-    font-size: 48px;
+    font-size: 34px;
     line-height: 1.2;
 
     margin: 10px auto 14px;
 
     max-width: 600px;
-    margin-bottom: 24px;
 }
 
 h2 {
@@ -494,7 +493,8 @@ textarea {
     }
 
     h1 {
-        font-size: 23px;
+        font-size: 48px;
+        margin-bottom: 24px;
     }
 
     h2 {
