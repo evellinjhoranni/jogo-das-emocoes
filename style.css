@@ -293,12 +293,13 @@ h2 {
 }
 
 h1 {
-    font-size: 34px;
+    font-size: 48px;
     line-height: 1.2;
 
     margin: 10px auto 14px;
 
     max-width: 600px;
+    margin-bottom: 24px;
 }
 
 h2 {
