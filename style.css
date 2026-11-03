@@ -292,7 +292,6 @@ h1 {
     line-height: 1.2;
     margin: 10px auto 30px;
     max-width: 600px;
-    white-space: nowrap;
 }
 
 h2 {
@@ -455,7 +454,6 @@ textarea {
         font-size: 32px;
         margin-top: 0;
         margin-bottom: 30px;
-        white-space: nowrap;
         position: relative;
         top: -28px;
     }
