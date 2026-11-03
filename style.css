@@ -555,3 +555,14 @@ textarea {
         min-width: 600px;
     }
 }
+
+/* Tamanho dos títulos das perguntas */
+h1.titulo-pergunta {
+    font-size: 23px !important;
+}
+
+@media (max-width: 400px) {
+    h1.titulo-pergunta {
+        font-size: 19px !important;
+    }
+}
