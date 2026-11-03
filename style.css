@@ -294,8 +294,11 @@ h1 {
     max-width: 600px;
 }
 
-/* Destaque exclusivo do título da tela inicial */
+/* Títulos das perguntas */
 
+.titulo-pergunta {
+    font-size: 23px;
+}
 
 h2 {
     font-size: 21px;
@@ -461,6 +464,10 @@ textarea {
         top: -28px;
     }
 
+    .titulo-pergunta {
+        font-size: 19px;
+    }
+
     h2 {
         font-size: 19px;
     }
@@ -510,6 +517,10 @@ textarea {
 
     .tela {
         max-width: 720px;
+    }
+
+    .titulo-pergunta {
+        font-size: 23px;
     }
 
     h2 {
