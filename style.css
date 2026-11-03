@@ -288,10 +288,17 @@ h2 {
 }
 
 h1 {
-    font-size: 42px;
+    font-size: 32px;
     line-height: 1.2;
     margin: 10px auto 30px;
     max-width: 600px;
+}
+
+/* Destaque exclusivo do título da tela inicial */
+
+body[data-tema="inicial"] .tela > h1 {
+    font-size: 52px;
+    white-space: nowrap;
 }
 
 h2 {
@@ -451,11 +458,9 @@ textarea {
     }
 
     h1 {
-        font-size: 32px;
+        font-size: 19px;
         margin-top: 0;
         margin-bottom: 30px;
-        position: relative;
-        top: -28px;
     }
 
     h2 {
@@ -507,11 +512,6 @@ textarea {
 
     .tela {
         max-width: 720px;
-    }
-
-    h1 {
-        font-size: 52px;
-        max-width: 700px;
     }
 
     h2 {
