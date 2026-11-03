@@ -348,7 +348,7 @@ function mostrarProximaPergunta() {
 
         <div class="tela">
 
-            <h1>${pergunta.texto}</h1>
+            <h1 class="titulo-pergunta">${pergunta.texto}</h1>
 
             ${conteudo}
 
