@@ -296,10 +296,6 @@ h1 {
 
 /* Destaque exclusivo do título da tela inicial */
 
-body[data-tema="inicial"] .tela > h1 {
-    font-size: 52px;
-    white-space: nowrap;
-}
 
 h2 {
     font-size: 21px;
@@ -461,6 +457,8 @@ textarea {
         font-size: 32px;
         margin-top: 0;
         margin-bottom: 30px;
+        position: relative;
+        top: -28px;
     }
 
     h2 {
