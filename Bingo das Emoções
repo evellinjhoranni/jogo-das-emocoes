@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bingo das Emoções</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #ed8b27;
+    font-family: Arial, sans-serif;
+    color: white;
+    padding: 25px 16px 35px;
+}
+
+main {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: clamp(27px, 7vw, 42px);
+    margin: 12px 0 30px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.caixa-sorteio {
+    background: white;
+    color: #222;
+    width: 100%;
+    min-height: 190px;
+    border-radius: 18px;
+    padding: 30px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 12px #00000020;
+}
+
+.palavra {
+    font-size: clamp(25px, 7vw, 42px);
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+.explicacao {
+    margin-top: 22px;
+    max-width: 480px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.explicacao strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.explicacao p {
+    margin: 0;
+}
+
+.escondido {
+    display: none;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 22px 0 35px;
+}
+
+button {
+    border: none;
+    border-radius: 12px;
+    padding: 15px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#sortear {
+    background: #b95612;
+    color: white;
+    flex: 1;
+    max-width: 230px;
+}
+
+#reiniciar {
+    background: #d16d1b;
+    color: white;
+    border: 2px solid white;
+    flex: 1;
+    max-width: 180px;
+}
+
+button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+button:not(:disabled):active {
+    transform: scale(0.96);
+}
+
+h2 {
+    font-size: 21px;
+    margin-bottom: 18px;
+}
+
+.historico {
+    text-align: center;
+}
+
+.lista-chamadas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 9px;
+}
+
+.palavra-chamada {
+    color: white;
+    background: #bd641c;
+    padding: 9px 13px;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.nenhuma {
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+/* JANELA DE CONFIRMAÇÃO */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: #00000080;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 10;
+}
+
+.modal.escondido {
+    display: none;
+}
+
+.modal-conteudo {
+    background: white;
+    color: #222;
+    width: 100%;
+    max-width: 360px;
+    padding: 28px 20px;
+    border-radius: 18px;
+    text-align: center;
+}
+
+.modal-conteudo h2 {
+    margin-top: 0;
+}
+
+.modal-conteudo p {
+    line-height: 1.5;
+}
+
+.confirmacao {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.sim {
+    background: #b95612;
+    color: white;
+}
+
+.nao {
+    background: #e8e8e8;
+    color: #222;
+}
+
+@media (max-width: 400px) {
+    body {
+        padding: 20px 13px 30px;
+    }
+
+    h1 {
+        margin-bottom: 25px;
+    }
+
+    .caixa-sorteio {
+        min-height: 175px;
+        padding: 25px 14px;
+    }
+
+    button {
+        padding: 14px 12px;
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 19px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main>
+
+    <h1>BINGO DAS EMOÇÕES</h1>
+
+    <section class="caixa-sorteio">
+
+        <div class="palavra" id="palavra">
+            Toque em sortear
+        </div>
+
+        <div class="explicacao escondido" id="explicacao">
+            <strong>O que significa?</strong>
+            <p id="textoExplicacao"></p>
+        </div>
+
+    </section>
+
+    <div class="botoes">
+
+        <button id="sortear" onclick="sortearPalavra()">
+            SORTEAR
+        </button>
+
+        <button id="reiniciar" onclick="abrirConfirmacao()">
+            REINICIAR
+        </button>
+
+    </div>
+
+    <section class="historico">
+
+        <h2>PALAVRAS JÁ CHAMADAS</h2>
+
+        <div class="lista-chamadas" id="listaChamadas">
+            <p class="nenhuma">Nenhuma palavra foi chamada ainda.</p>
+        </div>
+
+    </section>
+
+</main>
+
+<!-- CONFIRMAÇÃO PARA REINICIAR -->
+
+<div class="modal escondido" id="modal">
+
+    <div class="modal-conteudo">
+
+        <h2>Você quer reiniciar?</h2>
+
+        <p>Todas as palavras já sorteadas serão apagadas.</p>
+
+        <div class="confirmacao">
+
+            <button class="sim" onclick="confirmarReinicio()">
+                SIM
+            </button>
+
+            <button class="nao" onclick="fecharConfirmacao()">
+                NÃO
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+// LISTA DE PALAVRAS E EXPLICAÇÕES
+
+const palavras = [
+    "Alegria",
+    "Amor",
+    "Afeto",
+    "Carinho",
+    "Felicidade",
+    "Euforia",
+    "Empolgação",
+    "Entusiasmo",
+    "Prazer",
+    "Gratidão",
+    "Esperança",
+    "Alívio",
+    "Orgulho",
+    "Confiança",
+    "Coragem",
+    "Calma",
+    "Paz",
+    "Serenidade",
+    "Tranquilidade",
+    "Segurança",
+    "Admiração",
+    "Encanto",
+    "Fascínio",
+    "Diversão",
+    "Humor",
+    "Satisfação",
+    "Realização",
+    "Motivação",
+    "Inspiração",
+    "Otimismo",
+    "Curiosidade",
+    "Interesse",
+    "Surpresa",
+    "Ternura",
+    "Compaixão",
+    "Empatia",
+    "Acolhimento",
+    "Pertencimento",
+    "Liberdade",
+    "Deslumbramento",
+    "Descontração",
+    "Vivacidade",
+    "Animação",
+    "Deleite",
+    "Respeito",
+    "Simpatia",
+    "Completude",
+    "Tristeza",
+    "Medo",
+    "Raiva",
+    "Ódio",
+    "Nojo",
+    "Aversão",
+    "Ansiedade",
+    "Angústia",
+    "Aflição",
+    "Pânico",
+    "Terror",
+    "Horror",
+    "Irritação",
+    "Frustração",
+    "Decepção",
+    "Culpa",
+    "Vergonha",
+    "Remorso",
+    "Arrependimento",
+    "Inveja",
+    "Ciúme",
+    "Desprezo",
+    "Desgosto",
+    "Desânimo",
+    "Tédio",
+    "Apatia",
+    "Solidão",
+    "Saudade",
+    "Desamparo",
+    "Desespero",
+    "Desconfiança",
+    "Insegurança",
+    "Vulnerabilidade",
+    "Impotência",
+    "Humilhação",
+    "Rejeição",
+    "Ressentimento",
+    "Amargura",
+    "Mágoa",
+    "Rancor",
+    "Hostilidade",
+    "Impaciência",
+    "Agonia",
+    "Pesar",
+    "Melancolia",
+    "Desconforto",
+    "Preocupação",
+    "Desilusão",
+    "Desapontamento",
+    "Nostalgia",
+    "Expectativa",
+    "Dúvida",
+    "Confusão",
+    "Espanto",
+    "Incerteza",
+    "Estranheza",
+    "Hesitação",
+    "Indignação",
+    "Inquietação",
+    "Excitação",
+    "Agitação",
+    "Tensão",
+    "Alerta",
+    "Resignação",
+    "Aceitação",
+    "Determinação",
+    "Acanhamento",
+    "Afabilidade",
+    "Alvoroço",
+    "Animosidade",
+    "Antipatia",
+    "Apreço",
+    "Ardor",
+    "Atordoamento",
+    "Desconsolo",
+    "Devoção",
+    "Fervor",
+    "Frenesi",
+    "Repugnância",
+    "Zanga",
+    "Júbilo"
+    "Prazer"
+];
+
+// EXPLICAÇÕES DAS PALAVRAS ESCOLHIDAS
+
+const explicacoes = {
+
+    "Ternura":
+        "Sentimento de carinho, delicadeza e afeto por alguém ou alguma coisa.",
+
+    "Deslumbramento":
+        "Sensação de encantamento intenso diante de algo que impressiona ou fascina.",
+
+    "Vivacidade":
+        "Estado de energia, entusiasmo e disposição para viver e participar das experiências.",
+
+    "Deleite":
+        "Sensação de grande prazer e satisfação diante de algo agradável.",
+
+    "Completude":
+        "Sensação de plenitude, como se algo estivesse completo ou realizado.",
+
+    "Aversão":
+        "Sentimento de forte rejeição ou repulsa em relação a algo ou alguém.",
+
+    "Apatia":
+        "Estado de falta de interesse, entusiasmo ou reação emocional.",
+
+    "Impotência":
+        "Sensação de não conseguir agir ou mudar uma situação, mesmo desejando fazê-lo.",
+
+    "Amargura":
+        "Sentimento persistente de tristeza, mágoa ou ressentimento.",
+
+    "Hostilidade":
+        "Atitude ou sentimento de oposição, agressividade ou antipatia em relação a alguém.",
+
+    "Pesar":
+        "Sentimento de tristeza ou sofrimento diante de uma perda ou situação difícil.",
+
+    "Afabilidade":
+        "Qualidade de quem demonstra gentileza, simpatia e cordialidade.",
+
+    "Alvoroço":
+        "Estado de grande agitação, movimentação ou excitação.",
+
+    "Animosidade":
+        "Sentimento de antipatia ou hostilidade em relação a alguém.",
+
+    "Frenesi":
+        "Estado de agitação, entusiasmo ou excitação muito intensos.",
+
+    "Zanga":
+        "Sentimento de irritação ou raiva diante de algo desagradável.",
+
+    "Repugnância":
+        "Sensação intensa de aversão ou repulsa diante de algo.",
+
+    "Júbilo":
+        "Sentimento de alegria intensa, entusiasmo e grande satisfação."
+
+};
+
+// CONTROLE DO SORTEIO
+
+let disponiveis = [...palavras];
+let chamadas = [];
+let sorteando = false;
+
+const elementoPalavra = document.getElementById("palavra");
+const elementoExplicacao = document.getElementById("explicacao");
+const textoExplicacao = document.getElementById("textoExplicacao");
+const listaChamadas = document.getElementById("listaChamadas");
+const botaoSortear = document.getElementById("sortear");
+
+// ATUALIZA O HISTÓRICO
+
+function atualizarHistorico() {
+
+    listaChamadas.innerHTML = "";
+
+    if (chamadas.length === 0) {
+
+        listaChamadas.innerHTML =
+            '<p class="nenhuma">Nenhuma palavra foi chamada ainda.</p>';
+
+        return;
+    }
+
+    chamadas.forEach(palavra => {
+
+        const item = document.createElement("span");
+
+        item.className = "palavra-chamada";
+        item.textContent = palavra;
+
+        listaChamadas.appendChild(item);
+
+    });
+
+}
+
+// MOSTRA A PALAVRA E SUA EXPLICAÇÃO
+
+function mostrarResultado(palavra) {
+
+    elementoPalavra.textContent = palavra;
+
+    if (explicacoes[palavra]) {
+
+        textoExplicacao.textContent = explicacoes[palavra];
+        elementoExplicacao.classList.remove("escondido");
+
+    } else {
+
+        elementoExplicacao.classList.add("escondido");
+        textoExplicacao.textContent = "";
+
+    }
+
+}
+
+// REALIZA O SORTEIO COM ANIMAÇÃO
+
+function sortearPalavra() {
+
+    if (sorteando || disponiveis.length === 0) {
+        return;
+    }
+
+    sorteando = true;
+    botaoSortear.disabled = true;
+
+    elementoExplicacao.classList.add("escondido");
+
+    const indiceFinal = Math.floor(
+        Math.random() * disponiveis.length
+    );
+
+    const resultado = disponiveis[indiceFinal];
+
+    const inicio = Date.now();
+    const duracao = 2500;
+
+    function animacao() {
+
+        const tempoDecorrido = Date.now() - inicio;
+
+        const indiceAnimacao = Math.floor(
+            Math.random() * disponiveis.length
+        );
+
+        elementoPalavra.textContent =
+            disponiveis[indiceAnimacao];
+
+        if (tempoDecorrido < duracao) {
+
+            setTimeout(animacao, 75);
+
+        } else {
+
+            finalizarSorteio(resultado, indiceFinal);
+
+        }
+
+    }
+
+    animacao();
+
+}
+
+// FINALIZA O SORTEIO
+
+function finalizarSorteio(resultado, indiceFinal) {
+
+    mostrarResultado(resultado);
+
+    chamadas.push(resultado);
+
+    disponiveis.splice(indiceFinal, 1);
+
+    atualizarHistorico();
+
+    sorteando = false;
+    botaoSortear.disabled = false;
+
+    if (disponiveis.length === 0) {
+
+        botaoSortear.textContent = "FIM DO SORTEIO";
+        botaoSortear.disabled = true;
+
+    }
+
+}
+
+// ABRE A CONFIRMAÇÃO
+
+function abrirConfirmacao() {
+
+    if (sorteando) return;
+
+    document.getElementById("modal")
+        .classList.remove("escondido");
+
+}
+
+// FECHA A CONFIRMAÇÃO
+
+function fecharConfirmacao() {
+
+    document.getElementById("modal")
+        .classList.add("escondido");
+
+}
+
+// CONFIRMA O REINÍCIO
+
+function confirmarReinicio() {
+
+    disponiveis = [...palavras];
+    chamadas = [];
+    sorteando = false;
+
+    elementoPalavra.textContent = "Toque em sortear";
+
+    elementoExplicacao.classList.add("escondido");
+    textoExplicacao.textContent = "";
+
+    botaoSortear.disabled = false;
+    botaoSortear.textContent = "SORTEAR";
+
+    atualizarHistorico();
+
+    fecharConfirmacao();
+
+}
+
+</script>
+
+</body>
+</html>
