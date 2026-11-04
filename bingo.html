@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Bingo das Emoções</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 * {
@@ -14,32 +19,35 @@ body {
     margin: 0;
     min-height: 100vh;
     background: #ed8b27;
-    font-family: Arial, sans-serif;
+    font-family: 'Fredoka', sans-serif;
     color: white;
-    padding: 25px 16px 35px;
+    padding: 20px 16px 30px;
 }
 
 main {
     width: 100%;
     max-width: 650px;
+    min-height: calc(100vh - 50px);
     margin: auto;
+    display: flex;
+    flex-direction: column;
     text-align: center;
 }
 
 h1 {
     font-size: clamp(27px, 7vw, 42px);
-    margin: 12px 0 30px;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: 1px;
+    margin: 8px 0 24px;
 }
 
 .caixa-sorteio {
     background: white;
     color: #222;
     width: 100%;
-    min-height: 190px;
+    min-height: 145px;
     border-radius: 18px;
-    padding: 30px 18px;
+    padding: 22px 16px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -48,21 +56,22 @@ h1 {
 }
 
 .palavra {
-    font-size: clamp(25px, 7vw, 42px);
-    font-weight: 800;
+    font-size: clamp(27px, 7vw, 42px);
+    font-weight: 700;
     overflow-wrap: anywhere;
 }
 
 .explicacao {
-    margin-top: 22px;
+    margin-top: 15px;
     max-width: 480px;
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 .explicacao strong {
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
+    font-weight: 600;
 }
 
 .explicacao p {
@@ -77,17 +86,18 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 12px;
-    margin: 22px 0 35px;
+    margin: 17px 0 26px;
 }
 
 button {
+    font-family: 'Fredoka', sans-serif;
     border: none;
     border-radius: 12px;
-    padding: 15px 24px;
-    font-size: 16px;
-    font-weight: bold;
+    padding: 13px 20px;
+    font-size: 17px;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.2s;
+    transition: transform 0.2s, opacity 0.2s;
 }
 
 #sortear {
@@ -115,12 +125,14 @@ button:not(:disabled):active {
 }
 
 h2 {
-    font-size: 21px;
-    margin-bottom: 18px;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 17px;
 }
 
 .historico {
     text-align: center;
+    margin-bottom: 15px;
 }
 
 .lista-chamadas {
@@ -135,13 +147,14 @@ h2 {
     background: #bd641c;
     padding: 9px 13px;
     border-radius: 9px;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .nenhuma {
-    font-size: 15px;
+    font-size: 16px;
     opacity: 0.9;
+    margin: 10px 0;
 }
 
 /* JANELA DE CONFIRMAÇÃO */
@@ -166,13 +179,13 @@ h2 {
     color: #222;
     width: 100%;
     max-width: 360px;
-    padding: 28px 20px;
+    padding: 26px 20px;
     border-radius: 18px;
     text-align: center;
 }
 
 .modal-conteudo h2 {
-    margin-top: 0;
+    margin: 0 0 12px;
 }
 
 .modal-conteudo p {
@@ -183,7 +196,7 @@ h2 {
     display: flex;
     justify-content: center;
     gap: 12px;
-    margin-top: 22px;
+    margin-top: 20px;
 }
 
 .sim {
@@ -198,25 +211,46 @@ h2 {
 
 @media (max-width: 400px) {
     body {
-        padding: 20px 13px 30px;
+        padding: 17px 13px 25px;
     }
 
     h1 {
-        margin-bottom: 25px;
+        font-size: 29px;
+        margin: 8px 0 21px;
     }
 
     .caixa-sorteio {
-        min-height: 175px;
-        padding: 25px 14px;
+        min-height: 135px;
+        padding: 19px 13px;
+        border-radius: 16px;
+    }
+
+    .palavra {
+        font-size: 29px;
+    }
+
+    .explicacao {
+        font-size: 15px;
+        margin-top: 12px;
+    }
+
+    .botoes {
+        gap: 10px;
+        margin: 15px 0 25px;
     }
 
     button {
-        padding: 14px 12px;
-        font-size: 14px;
+        padding: 12px 9px;
+        font-size: 16px;
     }
 
     h2 {
-        font-size: 19px;
+        font-size: 20px;
+    }
+
+    .palavra-chamada {
+        font-size: 15px;
+        padding: 8px 11px;
     }
 }
 </style>
@@ -243,11 +277,11 @@ h2 {
 
     <div class="botoes">
 
-        <button id="sortear" onclick="sortearPalavra()">
+        <button id="sortear" type="button">
             SORTEAR
         </button>
 
-        <button id="reiniciar" onclick="abrirConfirmacao()">
+        <button id="reiniciar" type="button">
             REINICIAR
         </button>
 
@@ -277,11 +311,11 @@ h2 {
 
         <div class="confirmacao">
 
-            <button class="sim" onclick="confirmarReinicio()">
+            <button class="sim" id="botaoSim" type="button">
                 SIM
             </button>
 
-            <button class="nao" onclick="fecharConfirmacao()">
+            <button class="nao" id="botaoNao" type="button">
                 NÃO
             </button>
 
@@ -293,7 +327,7 @@ h2 {
 
 <script>
 
-// LISTA DE PALAVRAS E EXPLICAÇÕES
+// LISTA DE PALAVRAS
 
 const palavras = [
     "Alegria",
@@ -424,10 +458,9 @@ const palavras = [
     "Repugnância",
     "Zanga",
     "Júbilo"
-    "Prazer"
 ];
 
-// EXPLICAÇÕES DAS PALAVRAS ESCOLHIDAS
+// EXPLICAÇÕES
 
 const explicacoes = {
 
@@ -487,19 +520,21 @@ const explicacoes = {
 
 };
 
-// CONTROLE DO SORTEIO
-
-let disponiveis = [...palavras];
-let chamadas = [];
-let sorteando = false;
+// ELEMENTOS DA TELA
 
 const elementoPalavra = document.getElementById("palavra");
 const elementoExplicacao = document.getElementById("explicacao");
 const textoExplicacao = document.getElementById("textoExplicacao");
 const listaChamadas = document.getElementById("listaChamadas");
 const botaoSortear = document.getElementById("sortear");
+const botaoReiniciar = document.getElementById("reiniciar");
+const modal = document.getElementById("modal");
 
-// ATUALIZA O HISTÓRICO
+let disponiveis = [...palavras];
+let chamadas = [];
+let sorteando = false;
+
+// HISTÓRICO
 
 function atualizarHistorico() {
 
@@ -526,7 +561,7 @@ function atualizarHistorico() {
 
 }
 
-// MOSTRA A PALAVRA E SUA EXPLICAÇÃO
+// MOSTRAR RESULTADO
 
 function mostrarResultado(palavra) {
 
@@ -546,7 +581,7 @@ function mostrarResultado(palavra) {
 
 }
 
-// REALIZA O SORTEIO COM ANIMAÇÃO
+// SORTEIO
 
 function sortearPalavra() {
 
@@ -595,7 +630,7 @@ function sortearPalavra() {
 
 }
 
-// FINALIZA O SORTEIO
+// FINALIZAR SORTEIO
 
 function finalizarSorteio(resultado, indiceFinal) {
 
@@ -608,38 +643,39 @@ function finalizarSorteio(resultado, indiceFinal) {
     atualizarHistorico();
 
     sorteando = false;
-    botaoSortear.disabled = false;
 
     if (disponiveis.length === 0) {
 
         botaoSortear.textContent = "FIM DO SORTEIO";
         botaoSortear.disabled = true;
 
+    } else {
+
+        botaoSortear.disabled = false;
+
     }
 
 }
 
-// ABRE A CONFIRMAÇÃO
+// ABRIR CONFIRMAÇÃO
 
 function abrirConfirmacao() {
 
     if (sorteando) return;
 
-    document.getElementById("modal")
-        .classList.remove("escondido");
+    modal.classList.remove("escondido");
 
 }
 
-// FECHA A CONFIRMAÇÃO
+// FECHAR CONFIRMAÇÃO
 
 function fecharConfirmacao() {
 
-    document.getElementById("modal")
-        .classList.add("escondido");
+    modal.classList.add("escondido");
 
 }
 
-// CONFIRMA O REINÍCIO
+// REINICIAR
 
 function confirmarReinicio() {
 
@@ -660,6 +696,18 @@ function confirmarReinicio() {
     fecharConfirmacao();
 
 }
+
+// EVENTOS DOS BOTÕES
+
+botaoSortear.addEventListener("click", sortearPalavra);
+
+botaoReiniciar.addEventListener("click", abrirConfirmacao);
+
+document.getElementById("botaoSim")
+    .addEventListener("click", confirmarReinicio);
+
+document.getElementById("botaoNao")
+    .addEventListener("click", fecharConfirmacao);
 
 </script>
 
