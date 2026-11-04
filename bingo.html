@@ -321,6 +321,54 @@ h2 {
         padding: 6px 9px;
         font-size: 14px;
     }
+    /* DISTRIBUIÇÃO VERTICAL DA TELA */
+
+body {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    padding: 14px 16px;
+}
+
+main {
+    height: 100%;
+    min-height: 0;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+h1,
+.caixa-sorteio,
+.botoes {
+    flex-shrink: 0;
+}
+
+.historico {
+    flex: 0 0 27%;
+    min-height: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.lista-chamadas {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    align-content: flex-start;
+}
+
+@media (max-width: 400px) {
+    body {
+        padding: 12px 13px;
+    }
+
+    main {
+        gap: 8px;
+    }
+
+    .historico {
+        flex-basis: 30%;
+    }
 }
 </style>
 </head>
